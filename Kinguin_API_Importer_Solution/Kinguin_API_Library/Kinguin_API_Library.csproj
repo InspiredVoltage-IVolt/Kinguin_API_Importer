@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <RootNamespace>IVolt.Kinguin.API</RootNamespace>
+    <ApplicationIcon>Kinguin_API_Icon.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Kinguin_API_Icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FastMember.NetCore" Version="1.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
+    <PackageReference Include="System.Drawing.Common" Version="6.0.0" />
+    <PackageReference Include="System.Security.Cryptography.ProtectedData" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ACT_Cloud_DLL">
+      <HintPath>..\..\..\..\..\IVolt_Releases\_OLD_REFERENCES\ACT_Cloud_DLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ACT_CORE_DLL">
+      <HintPath>..\..\..\..\..\IVolt_Releases\_OLD_REFERENCES\ACT_CORE_DLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ACT_CORE_PLUGINS">
+      <HintPath>..\..\..\..\..\IVolt_Releases\_OLD_REFERENCES\ACT_CORE_PLUGINS.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

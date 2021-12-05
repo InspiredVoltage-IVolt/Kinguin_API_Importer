@@ -1,0 +1,3 @@
+﻿Place order
+	POST /v2/order
+	INPUT - JSON - PlaceOrder_Input_Class

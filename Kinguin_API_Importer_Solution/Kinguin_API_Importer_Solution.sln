@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kinguin_API_Library", "Kinguin_API_Library\Kinguin_API_Library.csproj", "{E7780B8F-967A-4274-A7BD-4A4EF15444F2}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Kinguin_API_Shared", "Kinguin_API_Shared\Kinguin_API_Shared.shproj", "{F971FEBD-3F1B-412F-A555-C82058A00771}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kinguin_API_Management_Console", "Kinguin_API_Management_Console\Kinguin_API_Management_Console.csproj", "{7F7D3FE3-67A8-4831-A1FE-B09EA7388B9F}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Kinguin_API_Shared\Kinguin_API_Shared.projitems*{f971febd-3f1b-412f-a555-c82058a00771}*SharedItemsImports = 13
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7780B8F-967A-4274-A7BD-4A4EF15444F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7780B8F-967A-4274-A7BD-4A4EF15444F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7780B8F-967A-4274-A7BD-4A4EF15444F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7780B8F-967A-4274-A7BD-4A4EF15444F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F7D3FE3-67A8-4831-A1FE-B09EA7388B9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F7D3FE3-67A8-4831-A1FE-B09EA7388B9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F7D3FE3-67A8-4831-A1FE-B09EA7388B9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F7D3FE3-67A8-4831-A1FE-B09EA7388B9F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E3BEBEC0-E7D6-454B-9E41-23F478737498}
+	EndGlobalSection
+EndGlobal

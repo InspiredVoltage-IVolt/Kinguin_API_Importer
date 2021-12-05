@@ -1,0 +1,604 @@
+<!-- LOOK FOR REMOVE FOR DISTRIBUTION BEFORE PUBLISHING VERSION-->
+<!-- ACT CONFIGURATION FILE FORMAT - VERSION 2.0x - Copyright 2018 Mark Alicz All Rights reserved-->
+<Settings>
+	<!-- Encryption Key Used For Encrypting Data Including Keys Within This File.  By default This is encrypted using the private key-->
+	<Setting name="EncryptionKey" encrypted="internal" value="C91dpUThaJCVQEui4v24Ugv9mjyF3OW0Zst2TBWfK5pK9R9PKeRn/W0zuesMbVhj433jRvKwSllp5N9zNG0PSQ=="></Setting>
+
+	<Setting name="kinguinlocaldownloadfolder"><![CDATA[D:\__Kinguin_Downloads\]]></Setting>
+	<Setting name="kinguinProcessedFilesfolder"><![CDATA[D:\__Kinguin_Downloads\ProcessedFiles\]]></Setting>
+	<Setting name="kinguinnewdownloadfolderformat"><![CDATA[###MONTH###-###DAY###-###YEAR###]]></Setting>
+	<Setting name="kinguinProcessedFilesfolder"><![CDATA[###SOURCEFOLDER###]]></Setting>
+	<Setting name="kinguinapikey"><![CDATA[dc9393a20a632734f15b73397d550692]]></Setting>
+	<Setting name="Kinguin_connectionstring"><![CDATA[Data Source=ns-sql-01;Initial Catalog=Kinguin_DB;User ID=root;Password=K@iserB3lla!MS]]></Setting>
+	<Setting name="NopComm_connectionstring"><![CDATA[Data Source=ns-sql-01;Initial Catalog=Marks_Store;User ID=root;Password=K@iserB3lla!MS]]></Setting>
+
+	<Setting name="ACTInstallationDirectory"><![CDATA[D:\Program Files (x86)\ACT\]]></Setting>
+	<!-- Defines If More Detailed Logging Occurs -->
+	<Setting name="VerboseDebugging"><![CDATA[True]]></Setting>
+	<!-- Default Column Delimeter -->
+	<Setting name="Delimeter" value="|"/>
+	<!-- Default Value Delimeter -->
+	<Setting name="ValueDelimeter" Value="|=|"/>
+	<!-- Default Log File Directory If Blank It will Log the File In The AppDomain.CurrentDomain.BaseDirectory-->
+	<Setting name="LogFileDirectory" value="D:\\ACT\\ErrorLogs\\"/>
+	<!-- Default Connection String Used For All Blank Connection Open Statements-->
+	<Setting name="DefaultConnectionString" value=""/>
+	<!-- Connection String For ACT_CORE -->
+	<Setting name="ACT_Core_Connectionstring"><![CDATA[Data Source=ns-sql-01;Initial Catalog=ACT_CORE;User ID=root;Password=K@iserB3lla!MS]]></Setting>
+
+
+	<!-- Connection String For MediNav -->
+	<Setting name="Medinav_ConnectionString"><![CDATA[]]></Setting>
+	<!-- Default Authentication Mode = *Currently Not Used-->
+	<Setting name="DefaultAuthenticationMode" value="" />
+	<!-- Base Web Directory Physical Location Used For Various Addon Functionality i.e. c:\websites\mywebsite\-->
+	<Setting name="BaseWebDirectory" value="" />
+	<!-- SMTP Host Server Name-->
+	<Setting name="SMTP_Host"><![CDATA[]]></Setting>
+	<!-- SMTP Server Port-->
+	<Setting name="SMTP_Port"><![CDATA[]]></Setting>
+	<!-- SMTP User Name If Required -->
+	<Setting name="SMTP_UserName"><![CDATA[]]></Setting>
+	<!-- SMTP Password If Required-->
+	<Setting name="SMTP_Password"><![CDATA[]]></Setting>
+	<!-- Pooling Interval is Used Mainly in ACT Service Scheduler and is in Milliseconds -->
+	<Setting name="PoolingInterval"><![CDATA[60000]]></Setting>
+
+	<!-- This is Required For The Built In Active Directory Plugin-->
+	<Setting name="ActiveDirectory_Path" value="" />7
+	<!-- END Required Built In Active Directory Plugin Settings-->
+
+	<!-- Global Ignore List When Reading The Database Schema.  These values will be ignored when generating code to access/execute them.  -->
+	<Setting name="GlobalIgnoreList">
+		<![CDATA[sp_upgraddiagrams,sp_helpdiagrams,sp_helpdiagramdefinition,sp_creatediagram,sp_renamediagram,sp_alterdiagram,sp_dropdiagram]]>
+	</Setting>
+
+	<!-- 
+    ACT Redirection For ASP.NET Websites. 
+    Step 1. Add To Web Config = <add type="ACT.Core.Web.ACTURLRewriter" name="ACTURLRewriter"/> 
+    Step 2. Define The Redirection Settings 
+      item key = URL To Redirect
+      item value = Actual ASP.NET Relative Path
+      
+      Using the example below all requests to http://www.mysite.com/Shared Content/ would actually process at
+        http://www.mysite.com/SharedContent/Default.aspx
+  -->
+	<Setting name="httpredirection">
+		<![CDATA[
+<root>
+	<items>
+		<item key="/Example Content" value="/Example/Default.aspx"/>
+	</items>
+</root>
+]]>
+	</Setting>
+
+	<!-- ACT Cloud Specific Information  REMOVE FOR REDISTRIBUTION INTERNAL CONNECTION ONLY -->
+	<Setting name="ACTCloudConnectionString"><![CDATA[]]></Setting>
+	<Setting name="ACTCloudForgotPasswordString">
+		<![CDATA[
+Your Password For #SITENAME# has been reset.  Below is your login information.
+Username: #USERNAME#
+Password: #PASSWORD#
+  ]]>
+	</Setting>
+
+	<!--- 
+  START PLUGIN DEFINITION SECTION
+    4 Keys Per Plugin Defintion
+    1. #FULLINTERFACEPATH#
+        Plugin DLL Name.  If Blank it will look inside ACT.DLL
+    2. #FULLINTERFACEPATH#.FullClassName
+        Full Class Name Of Plugin Implementation
+    3. #FULLINTERFACEPATH#.StoreOnce
+        (True or "") Define If This is a shared class or a multi instance implementation Usually Blank (False) by default, Carefull setting this to true
+    4. #FULLINTERFACEPATH#.Args
+        Optional Arguments to be passed into the Constructor. Rarely Used At This Point.  But is processed through the common replacement routines of all classes defined.     
+        This defines custom arguments for your class (PARSED By Global Parser, AND UTILIZES Delimeter Defined Above)
+  -->
+
+	<!-- IMPORTANT INTERFACES -->
+
+	<Setting name="ACT.Core.Interfaces.Common.I_ErrorLoggable" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_ErrorLoggable.FullClassName"><![CDATA[ACT.Plugins.Common.ACT_ErrorLogging]]></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_ErrorLoggable.StoreOnce"><![CDATA[]]></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_ErrorLoggable.Args"><![CDATA[]]></Setting>
+
+	<Setting name="ACT.Core.Interfaces.I_Core" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.I_Core.FullClassName"><![CDATA[ACT.Plugins.ACT_Core]]></Setting>
+	<Setting name="ACT.Core.Interfaces.I_Core.StoreOnce"><![CDATA[]]></Setting>
+	<Setting name="ACT.Core.Interfaces.I_Core.Args"><![CDATA[]]></Setting>
+
+	<!-- END IMPORTANT INTERFACES -->
+
+	<!-- OTHER COMMON INTERFACES-->
+
+	<Setting name="ACT.Core.Interfaces.Common.I_TestResult" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_TestResult.FullClassName" value="ACT.Plugins.Common.ACT_TestResult"></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_TestResult.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_TestResult.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.Common.I_TestResultExpanded" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_TestResultExpanded.FullClassName" value="ACT.Plugins.Common.ACT_ExtendedTestResults"></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_TestResultExpanded.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_TestResultExpanded.Args" value=""></Setting>
+
+	<!-- END OTHER COMMON INTERFACES -->
+
+	<!-- START SECURITY PLUGIN SECTION -->
+
+	<!-- ENCRYPTION -->
+
+	<Setting name="ACT.Core.Interfaces.Security.Encryption.I_Encryption" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Encryption.I_Encryption.FullClassName" value="ACT.Plugins.Security.Encryption.ACT_Rijndael"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Encryption.I_Encryption.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Encryption.I_Encryption.Args" value=""></Setting>
+
+	<!-- AUTHENTICATON -->
+
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_SecurityProvider" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_SecurityProvider.FullClassName" value="ACT.Plugins.Security.Authentication.ACT_Cloud_SecurityProvider"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_SecurityProvider.StoreOnce"><![CDATA[]]></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_SecurityProvider.Args"><![CDATA[]]></Setting>
+
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_LoginResult" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_LoginResult.FullClassName" value="ACT.Plugins.Security.Authentication.ACT_LoginResult"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_LoginResult.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_LoginResult.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_UserInfo" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_UserInfo.FullClassName" value="ACT.Plugins.Security.Authentication.ACT_UserInfo"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_UserInfo.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.Authentication.I_UserInfo.Args" value=""></Setting>
+
+	<!-- USERDATA -->
+
+	<Setting name="ACT.Core.Interfaces.Security.UserData.I_UserAddress" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.UserData.I_UserAddress.FullClassName" value="ACT.Plugins.Security.UserData.ACT_UserAddress"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.UserData.I_UserAddress.StoreOnce"><![CDATA[]]></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.UserData.I_UserAddress.Args"><![CDATA[]]></Setting>
+
+	<Setting name="ACT.Core.Interfaces.Security.UserData.I_UserContact" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.UserData.I_UserContact.FullClassName" value="ACT.Plugins.Security.UserData.ACT_UserContact"></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.UserData.I_UserContact.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.Security.UserData.I_UserContact.Args" value=""></Setting>
+
+	<!-- SECURITY END -->
+
+	<!-- COMMUNICATION START -->
+
+	<Setting name="ACT.Core.Interfaces.Communication.I_Emails" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Communication.I_Emails.FullClassName" value="ACT.Plugins.Communication.ACT_Emails"></Setting>
+	<Setting name="ACT.Core.Interfaces.Communication.I_Emails.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.Communication.I_Emails.Args" value=""></Setting>
+
+	<!-- COMMUNICATION END -->
+
+	<!-- COMPRESSION START -->
+
+	<Setting name="ACT.Core.Interfaces.Common.I_Compression" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_Compression.FullClassName" value="ACT.Plugins.Compression.ACT_Compression"></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_Compression.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.Common.I_Compression.Args" value=""></Setting>
+
+	<!-- COMMUNICATION END -->
+
+	<!-- RANDOMIZATION START -->
+
+	<Setting name="ACT.Core.Interfaces.Random.I_Randomization" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Random.I_Randomization.FullClassName"><![CDATA[ACT.Plugins.Random.ACT_CryptoRandom]]></Setting>
+	<Setting name="ACT.Core.Interfaces.Random.I_Randomization.StoreOnce"><![CDATA[]]></Setting>
+	<Setting name="ACT.Core.Interfaces.Random.I_Randomization.Args"><![CDATA[]]></Setting>
+
+	<!-- RANDOMIZATION END -->
+
+	<!-- DATA ACCESS START -->
+
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_Db" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_Db.FullClassName" value="ACT.Plugins.DataAccess.ACT_IDb"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_Db.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_Db.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbColumn" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbColumn.FullClassName" value="ACT.Plugins.DataAccess.ACT_IDbColumn"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbColumn.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbColumn.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbDataType" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbDataType.FullClassName" value="ACT.Plugins.DataAccess.ACT_DbDataType"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbDataType.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbDataType.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbRelationship" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbRelationship.FullClassName" value="ACT.Plugins.DataAccess.ACT_IDbRelationships"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbRelationship.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbRelationship.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbStoredProcedureParameter" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbStoredProcedureParameter.FullClassName" value="ACT.Plugins.DataAccess.ACT_DbStoredProcedureParameter"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbStoredProcedureParameter.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbStoredProcedureParameter.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbStoredProcedure" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbStoredProcedure.FullClassName" value="ACT.Plugins.DataAccess.ACT_DbStoredProcedure"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbStoredProcedure.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbStoredProcedure.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbTable" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbTable.FullClassName" value="ACT.Plugins.DataAccess.ACT_IDbTable"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbTable.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbTable.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbView" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbView.FullClassName" value="ACT.Plugins.DataAccess.ACT_IDbView"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbView.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbView.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbWhereStatement" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbWhereStatement.FullClassName" value="ACT.Plugins.DataAccess.ACT_IDbWhereStatemet"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbWhereStatement.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DbWhereStatement.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DataAccess" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DataAccess.FullClassName" value="ACT.Plugins.DataAccess.ACT_MSSQL"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DataAccess.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_DataAccess.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_QueryResult" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_QueryResult.FullClassName" value="ACT.Plugins.DataAccess.ACT_QueryResult"></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_QueryResult.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.DataAccess.I_QueryResult.Args" value=""></Setting>
+
+	<!-- DATA ACCESS END -->
+
+	<!-- WEB START -->
+
+	<Setting name="ACT.Core.Interfaces.Web.I_WebUserControl" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.Web.I_WebUserControl.FullClassName" value="ACT.Plugins.Web.ACT_WebUserControl"></Setting>
+	<Setting name="ACT.Core.Interfaces.Web.I_WebUserControl.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.Web.I_WebUserControl.Args" value=""></Setting>
+
+	<!-- WEB END -->
+
+	<!-- START CODE GENERATION DEFINITION SECTION -->
+
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGenerator" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGenerator.FullClassName" value="ACT.Plugins.CodeGeneration.ACT_CodeGenerator"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGenerator.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGenerator.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings.FullClassName" value="ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode.FullClassName" value="ACT.Plugins.CodeGeneration.ACT_GeneratedCode"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGeneration_UpdateEnums" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGeneration_UpdateEnums.FullClassName" value="ACT.Plugins.CodeGeneration.ACT_CodeGeneration_UpdateEnums"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGeneration_UpdateEnums.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.I_CodeGeneration_UpdateEnums.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.History.I_History" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.History.I_History.FullClassName" value="ACT.Plugins.CodeGeneration.History.ACT_History"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.History.I_History.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.History.I_History.Args" value=""></Setting>
+
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.History.I_HistoryItem" value="ACT_CORE_PLUGINS.dll"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.History.I_HistoryItem.FullClassName" value="ACT.Plugins.CodeGeneration.History.ACT_HistoryItem"></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.History.I_HistoryItem.StoreOnce" value=""></Setting>
+	<Setting name="ACT.Core.Interfaces.CodeGeneration.History.I_HistoryItem.Args" value=""></Setting>
+
+	<!-- END CODE GENERATION DEFINITION SECTION -->
+
+	<!-- END PLUGIN DEFINITION SECTION -->
+
+	<!---
+  CUSTOM SETTINGS SECTION START
+  -->
+	<Setting name="ACTErrorTable">
+		<![CDATA[  
+    CREATE TABLE [dbo].[ACT_ERRORS](
+	    [ID] [int] IDENTITY(1,1) NOT NULL,
+	    [ClassName] [nvarchar](max) NOT NULL,
+	    [ErrorTitle] [nvarchar](max) NOT NULL,
+	    [AdditionalInfo] [nvarchar](max) NULL,
+	    [UserInfo] [nvarchar](max) NULL,
+	    [Exception] [varbinary](max) NULL,
+	    [StackTrace] [nvarchar](max) NULL,
+	    [DateAdded] [datetime] NOT NULL,
+	    [DateModifed] [datetime] NOT NULL,
+     CONSTRAINT [PK_ACT_ERRORS] PRIMARY KEY CLUSTERED 
+    (
+	    [ID] ASC
+    )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+    ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+    ]]>
+	</Setting>
+	<Setting name="MSSQLColumnInfoQuery">
+		<![CDATA[
+  Select  sep.value [Description],
+ COLUMN_NAME, 
+        CAST(ORDINAL_POSITION AS INT) as Position,
+        COLUMN_DEFAULT,
+        dobj.name AS ColumnDefaultName,
+        CASE WHEN c.IS_NULLABLE = 'YES' THEN 1 ELSE 0 END as NULLABLE,
+        DATA_TYPE,
+        CAST(ISNULL(CHARACTER_MAXIMUM_LENGTH,0) AS INT) as COLUMN_LENGTH,
+        CAST(ISNULL(NUMERIC_PRECISION,0) AS INT) as COLUMN_PRECISION,
+        CAST(ISNULL(NUMERIC_SCALE,0) AS INT) as COLUMN_SCALE,             
+        CASE WHEN ic.object_id IS NULL THEN 0 ELSE 1 END AS IDENTITYCOLUMN,
+        CAST(ISNULL(ic.seed_value,0) AS INT) AS IDENTITYSEED,
+        CAST(ISNULL(ic.increment_value,0) AS INT) AS IDENTITYINCREMENT,
+        CASE WHEN ty.collation_name IS NOT NULL THEN 1 ELSE 0 END AS IsCharColumn From sys.tables st
+    inner join sys.columns sc on st.object_id = sc.object_id
+    left join sys.extended_properties sep on st.object_id = sep.major_id
+                                         and sc.column_id = sep.minor_id
+                                         and sep.name = 'MS_Description'
+	Left Join INFORMATION_SCHEMA.COLUMNS c on OBJECT_NAME(sc.object_id) = c.TABLE_NAME and c.COLUMN_NAME = sc.name
+	LEFT JOIN sys.identity_columns ic ON c.TABLE_NAME = OBJECT_NAME(ic.object_id) AND c.COLUMN_NAME = ic.Name
+	JOIN sys.types ty ON COALESCE(c.DOMAIN_NAME,c.DATA_TYPE) = ty.name
+    LEFT OUTER JOIN sys.objects dobj ON dobj.object_id = sc.default_object_id AND dobj.type = 'D'
+	
+    WHERE c.TABLE_NAME = '#TABLENAME#' and c.TABLE_SCHEMA = '#OWNER#'
+    ORDER BY
+        c.TABLE_NAME, c.ORDINAL_POSITION
+    ]]>
+	</Setting>
+	<Setting name="ACTCodeGenerator_Namespace">ACT.Generated</Setting>
+	<Setting name="ACTCodeGenerator_UsingStatements">
+		<![CDATA[
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Xml.Linq;
+using System.Reflection;
+using System.ComponentModel;
+using ACT.Core.Interfaces.Common;
+using ACT.Core.Interfaces.Security;
+using ACT.Core.Interfaces.DataAccess;
+using ACT.Core.Interfaces;
+using ACT.Core;
+using ACT.Core.Enums;
+using ACT.Core.Extensions.CodeGenerator;
+    ]]>
+	</Setting>
+	<Setting name="SuperFKQuery">
+		<![CDATA[
+   Select distinct OBJECT_SCHEMA_NAME(fk.parent_object_id) as FKTABLE_OWNER,
+OBJECT_NAME(fk.parent_object_id) as [PKTABLE_NAME],
+fk.name as [FK_NAME],
+OBJECT_NAME(fk.referenced_object_id) as [FKTABLE_NAME],fkcol.name as PKCOLUMN_NAME,fkcol2.name as FKCOLUMN_NAME From sys.foreign_keys fk 
+Inner Join sys.foreign_key_columns fcol on fcol.constraint_object_id = fk.object_id 
+Inner Join sys.columns fkcol on fkcol.object_id = fcol.parent_object_id and fkcol.column_id = fcol.parent_column_id
+Inner Join sys.columns fkcol2 on fkcol2.object_id = fcol.referenced_object_id and fkcol2.column_id = fcol.referenced_column_id
+where  OBJECT_ID('#TABLENAME#') = fk.parent_object_id
+
+    ]]>
+
+	</Setting>
+	<Setting name="ASPNETTemplate">
+		<![CDATA[
+    <%@ Page Language="C#" AutoEventWireup="true" CodeFile="#TABLENAME#.aspx.cs" Inherits="_#TABLENAME#" %>
+
+      <!DOCTYPE html>
+
+      <html xmlns="http://www.w3.org/1999/xhtml">
+        <head runat="server">
+          <title></title>
+        </head>
+        <body>
+          <form id="form1" runat="server">
+            <div style="width: 800px">
+              #ROWDATA#
+            </div>
+          </form>
+        </body>
+      </html>
+       ]]>
+	</Setting>
+	<Setting name="ASPNETTemplateCodeFile">
+		<![CDATA[
+    using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+public partial class _#TABLENAME# : System.Web.UI.Page
+{
+    #PRIVATEVARIABLES#
+    
+    protected void Page_Load(object sender, EventArgs e)
+    {
+      #SETPRIVATEVARIABLES#
+    }
+}
+    ]]>
+	</Setting>
+	<Setting name="ASPNETTemplateRow">
+		<![CDATA[
+    <div style="width: 200px; float: left">#COLUMNNAME#</div>
+    <div style="width: 600px; float: left">#INPUTCONTROL#</div>
+    ]]>
+	</Setting>
+	<Setting name="C#ProjectTemplate">
+		<![CDATA[
+    <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>#NEWGUID#</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <AssemblyName>#ASSEMBLYNAME#</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+   <ItemGroup>
+    <Reference Include="ACT.Core">
+      <HintPath>Bin\ACT.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="ACT.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    #ITEMS#
+  </ItemGroup>
+  <Target Name="Build">
+    <MakeDir Directories="$(OutputPath)" Condition="!Exists('$(OutputPath)')" />
+    <Csc Sources="@(Compile)" OutputAssembly="$(OutputPath)$(AssemblyName).exe" />
+  </Target>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
+    ]]>
+	</Setting>
+	<Setting name="AccessViewClassTemplate">
+		<![CDATA[
+
+        public static IQueryResult Get_#VIEWNAME#(int StartOffset = -1, int ReturnRowCount = 0, string OrderByFieldName = "", string localConnectionString = "")
+        {
+            IQueryResult _TmpReturn = ACT.Core.CurrentCore<ACT.Core.Interfaces.DataAccess.IQueryResult>.GetCurrent();
+
+            //
+            using (var DataAccess = ACT.Core.CurrentCore<ACT.Core.Interfaces.DataAccess.IDataAccess>.GetCurrent())
+            {
+
+                if (localConnectionString == "")
+                {
+                    DataAccess.Open(GenericStaticClass.DatabaseConnectionString);
+                }
+                else
+                {
+                    DataAccess.Open(localConnectionString);
+                }
+
+                List<System.Data.SqlClient.SqlParameter> _Params = new List<System.Data.SqlClient.SqlParameter>();
+                //_Params.Add(new System.Data.SqlClient.SqlParameter("IDParam", ID));
+
+                string _SQL = "";
+
+                if (StartOffset == -1)
+                {
+                    _SQL = "Select * From #VIEWNAME#";
+                }
+                else
+                {
+                    if (ReturnRowCount == 0)
+                    {
+                        _TmpReturn.Exceptions.Add(new Exception("ReturnRowCount Can't Be 0 if StartOffset is not 0"));
+                        return _TmpReturn;
+                    }
+
+                    if (OrderByFieldName == "")
+                    {
+                        _TmpReturn.Exceptions.Add(new Exception("Order by Statement Must Not Be Blank"));
+                    }
+                                       
+                    _SQL = "Select * From #VIEWNAME# Order By " + OrderByFieldName + " OFFSET " + StartOffset.ToString() + " ROWS FETCH NEXT " + ReturnRowCount.ToString() + " ROWS ONLY";
+                   
+                }
+                
+                var Result = DataAccess.RunCommand(_SQL, _Params.ToList<System.Data.IDataParameter>(), true, System.Data.CommandType.Text);
+
+                return Result;
+            }
+        }
+
+        public static IQueryResult Get_#VIEWNAME#(IDbWhereStatement WhereStatement, int StartOffset = -1, int ReturnRowCount = 0, string OrderByFieldName = "", string localConnectionString = "")
+        {
+            IQueryResult _TmpReturn = ACT.Core.CurrentCore<ACT.Core.Interfaces.DataAccess.IQueryResult>.GetCurrent();
+
+            //
+            using (var DataAccess = ACT.Core.CurrentCore<ACT.Core.Interfaces.DataAccess.IDataAccess>.GetCurrent())
+            {
+
+                if (localConnectionString == "")
+                {
+                    DataAccess.Open(GenericStaticClass.DatabaseConnectionString);
+                }
+                else
+                {
+                    DataAccess.Open(localConnectionString);
+                }
+
+               // List<System.Data.SqlClient.SqlParameter> _Params = new List<System.Data.SqlClient.SqlParameter>();
+                //_Params.Add(new System.Data.SqlClient.SqlParameter("IDParam", ID));
+
+                string _SQL = "";
+                string _Where = "";
+                bool _HasWhere = false;
+
+                List<System.Data.IDataParameter> _Params = new List<System.Data.IDataParameter>();
+
+                if (!WhereStatement.ColumnName.NullOrEmpty())
+                {
+                    _Where = DataAccess.GenerateWhereStatement(WhereStatement, "");
+                    _Params = DataAccess.GenerateWhereStatementParameters(WhereStatement);
+                    _HasWhere = true;
+                }
+
+                _SQL = "Select * From #VIEWNAME# ";
+
+                if (_HasWhere)
+                {
+                    _SQL += _Where;
+                }
+
+                if (StartOffset != -1)
+                {
+                    if (ReturnRowCount == 0)
+                    {
+                        _TmpReturn.Exceptions.Add(new Exception("ReturnRowCount Can't Be 0 if StartOffset is not 0"));
+                        return _TmpReturn;
+                    }
+
+                    if (OrderByFieldName == "")
+                    {
+                        _TmpReturn.Exceptions.Add(new Exception("Order by Statement Must Not Be Blank"));
+                    }
+
+                    _SQL += " Order By " + OrderByFieldName + " OFFSET " + StartOffset.ToString() + " ROWS FETCH NEXT " + ReturnRowCount.ToString() + " ROWS ONLY";
+                }
+                
+                var Result = DataAccess.RunCommand(_SQL, _Params, true, System.Data.CommandType.Text);
+
+                return Result;
+            }
+        }
+    ]]>
+	</Setting>
+	<!---
+  END CUSTOM SETTINGS SECTION START
+  -->
+</Settings>

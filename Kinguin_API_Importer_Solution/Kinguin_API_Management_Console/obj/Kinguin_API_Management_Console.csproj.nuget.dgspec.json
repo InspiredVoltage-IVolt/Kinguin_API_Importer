@@ -1,0 +1,168 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Management_Console\\Kinguin_API_Management_Console.csproj": {}
+  },
+  "projects": {
+    "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Library\\Kinguin_API_Library.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Library\\Kinguin_API_Library.csproj",
+        "projectName": "Kinguin_API_Library",
+        "projectPath": "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Library\\Kinguin_API_Library.csproj",
+        "packagesPath": "C:\\Users\\MarkAlicz\\.nuget\\packages\\",
+        "outputPath": "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Library\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\MarkAlicz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress .NET Core Desktop 20.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 20.1\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "FastMember.NetCore": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
+            },
+            "System.Drawing.Common": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Security.Cryptography.ProtectedData": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Management_Console\\Kinguin_API_Management_Console.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Management_Console\\Kinguin_API_Management_Console.csproj",
+        "projectName": "Kinguin_API_Management_Console",
+        "projectPath": "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Management_Console\\Kinguin_API_Management_Console.csproj",
+        "packagesPath": "C:\\Users\\MarkAlicz\\.nuget\\packages\\",
+        "outputPath": "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Management_Console\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\MarkAlicz\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress .NET Core Desktop 20.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\DevExpress 20.1\\.NET Core Desktop Libraries\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {
+              "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Library\\Kinguin_API_Library.csproj": {
+                "projectPath": "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Library\\Kinguin_API_Library.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "dependencies": {
+            "IVolt_ACT_ExtensionLibrary": {
+              "target": "Package",
+              "version": "[2.0.5, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

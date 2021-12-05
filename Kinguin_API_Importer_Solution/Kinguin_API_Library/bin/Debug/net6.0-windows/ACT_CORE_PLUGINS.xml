@@ -1,0 +1,2742 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ACT_CORE_PLUGINS</name>
+    </assembly>
+    <members>
+        <member name="T:ACT.Plugins.ACT_Core">
+            <summary>
+            Global Implementation of the DIP_Core Interface.
+            </summary>
+            
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.SetImpersonate(ACT.Core.Interfaces.Security.Authentication.I_UserInfo)">
+            <summary>
+            Sets the Impersonation of the User Making Database Commands Which are not implmented.
+            </summary>
+            <param name="UserInfo"></param>
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.StandardReplaceMent(System.String,ACT.Core.Enums.RepacementStandard)">
+            <summary>
+            Performs the standard replacement of the Classes Members.
+            </summary>
+            <param name="instr">String To Replace Data In</param>
+            <param name="InputStandard">Currently Only UPPERCASE is Supported</param>
+            <returns>Replaced String</returns>
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.ValidatePluginRequirements">
+            <summary>
+            Validate the Plugin
+            </summary>
+            <returns></returns>        /// 
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.ReturnSystemSettingRequirements">
+            <summary>
+            Returns a List of SystemSettingRequirements
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.ImportXMLData(System.String)">
+            <summary>
+            Not Implemented on the Global Level Must Override if needed
+            </summary>
+            <param name="XML"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.ExportXMLData">
+            <summary>
+            Not Implemented on the Global Level Must Override if needed
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.GetErrors">
+            <summary>
+            Not Implemented on the Global Level Must Override if needed
+            </summary>      
+            <returns></returns>
+        </member>
+        <member name="P:ACT.Plugins.ACT_Core.HasChanged">
+            <summary>
+            Returns or Sets Has Changed.  NOTICE if you get the value it resets to false automatically
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.ACT_Core.PublicProperties">
+            <summary>
+            Returns all the Properties in the class
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.ReturnProperty(System.String)">
+            <summary>
+            Returns the Property Value as a Object
+            </summary>
+            <param name="PropertyName"></param>
+            <returns>Object</returns>
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.SetProperty(System.String,System.Object)">
+            <summary>
+            Sets the property by trying to cast the object as the property type.
+            </summary>
+            <param name="PropertyName"></param>
+            <param name="value"></param>
+            <returns>I_TestResult</returns>
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.Dispose">
+            <summary>
+            Not Implemented on the Global Level Must Override if needed
+            </summary>        
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.LogError(System.String,System.String,System.Exception,System.String,ACT.Core.Enums.ErrorLevel)">
+            <summary>
+            Log the Error
+            </summary>
+            <param name="className"></param>
+            <param name="summary"></param>
+            <param name="ex"></param>
+            <param name="additionInformation"></param>
+            <param name="errorType"></param>
+        </member>
+        <member name="M:ACT.Plugins.ACT_Core.HealthCheck">
+            <summary>
+            Checks All Of the Base Functionality
+            </summary>
+            <returns>Test Result</returns>
+        </member>
+        <member name="T:ACT.Plugins.Application.ACT_APP_ENVIRONMENT_CONFIG_FILE">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings">
+            <summary>
+            This is the ACT Implementation of the Code Generation Settings File
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.SettingsFileLocation">
+            <summary>
+            Location of the settings file to USE When generating CODE
+            This contains all of the information in this file as well as all of the templates
+            connections and everything .  THIS WILL OVERRIDE THE Configuration file in the Current
+            Base Directory.  LEAVE BLANK IF YOU WANT TO USE THE FILE IN THE BIN FOLDER WITH THIS
+            DLL
+            </summary>
+        </member>
+        <member name="F:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings._ConnectionString">
+            <summary>
+            Internal Encrypted Connection String
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.DatabaseConnectionString">
+            <summary>
+            Database Connection String Resolved From Database Connection Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.DatabaseConnectionName">
+            <summary>
+            Database Connection Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.OutputLanguage">
+            <summary>
+            Language to Generate The code Into (Search Plugins For Matching Language)
+            ACT Built in ONLY Supports CSharp
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.CompileCode">
+            <summary>
+            Compile the Code into the DLLName Specified
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.OutputSolutionWithProject">
+            <summary>
+            Output a CS Solution and Project
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.GenerateBaseLayer">
+            <summary>
+            Generate the BASE LAYER CODE
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.GenerateUserLayer">
+            <summary>
+            Generate USER LAYER
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.GenerateStoredProcedures">
+            <summary>
+            Generate Stored Procedures
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.GenerateWebServices">
+            <summary>
+            Generate Web Services Code
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.GenerateViewAccess">
+            <summary>
+            Generate View Access
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.NotifyWhenCodeIsGenerated">
+            <summary>
+            Notify Specified Administrators when Code Is Generated 
+            Uses ADMINS Setting in the SystemSettings Administrators Delimited by the default delimiter
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.NotifyWhenProjectCodeIsUpdated">
+            <summary>
+            Notify Specified Administrators when ProjectCode Is Updated
+            Uses ADMINS Setting in the SystemSettings Administrators Delimited by the default delimiter
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.BackupProjectCodeBeforeDeployment">
+            <summary>
+            Backup the project Code before Deployment 
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.NamespaceDrivenProcedures">
+            <summary>
+            Namespace Driven Procedures. Creates Multiple Files to Help Organize Stored Procedures
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.NamespaceDrivenProceduresDelimiter">
+            <summary>
+            Delimiter for Creating Additional Name Spaces 
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.DLLName">
+            <summary>
+            DLL Name to Compile the DLL to
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.NameSpace">
+            <summary>
+            Default Namespace
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.BaseCodeNameSpace">
+            <summary>
+            Base Code Namespace
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.UserCodeNameSpace">
+            <summary>
+            Default Namespace
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.RootOutputDirectory">
+            <summary>
+            Output directory
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.ProjectUpdateDirectory">
+            <summary>
+            Location of Visual Studio Project (ROOT PATH)
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.BaseFolderPath">
+            <summary>
+            Base Folder PATH to use when writing generated BASE files
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.UserFolderPath">
+            <summary>
+            User Folder PATH to use when writing generated USER files
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.StoredProcedureNamespaceMethodPath">
+            <summary>
+            Folder Path To 
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.ProjectName">
+            <summary>
+            Name of the Project Used for Displaying in the System and Generating the Code Project
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.CodeGeneration.ACT_CodeGenerationSettings.SolutionName">
+            <summary>
+            Name of the Solution
+            </summary>
+        </member>
+        <member name="T:ACT.Plugins.CodeGeneration.ACT_CodeGenerator">
+            <summary>
+            Internal Code Generation Class Generates C# Code
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.TestCodeSettingsConnection(System.Boolean,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Method to Test the connection String Setting
+            </summary>
+            <param name="throwErrors"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateCode(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate the Code Base On the IDB Database and The Code Settings Passed In
+            </summary>
+            <param name="CodeSettings">ACT.Core.Interfaces.CodeGeneration.ICodeGenerationSettings - Code Generation Settings</param>
+            <returns>Generated Code in a List</returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateCode(ACT.Core.Interfaces.DataAccess.I_Db,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate the Code Base On the IDB Database and The Code Settings Passed In
+            </summary>
+            <param name="Database">ACT.Core.Interfaces.DataAccess.IDb - Database Containing the Extracted Meta Data</param>
+            <param name="CodeSettings">ACT.Core.Interfaces.CodeGeneration.ICodeGenerationSettings - Code Generation Settings</param>
+            <returns>Generated Code in a List</returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateWebFormCode(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            TODO
+            </summary>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.EnsureCodeSettings(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Ensure The CodeSettings List Loaded
+            </summary>
+            <param name="CodeSettings"></param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateCode(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate The Tables Code using the Code Settings
+            </summary>
+            <param name="Table">ACT.Core.Interfaces.DataAccess.IDbTable - Table Information</param>
+            <param name="CodeSettings">ACT.Core.Interfaces.DataAccess.ICodeGenerationSettings - Code Settings</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateViewAccess(ACT.Core.Interfaces.DataAccess.I_Db,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generates the VIEW Access Class
+            </summary>
+            <param name="Database"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateStaticClass(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generates a Static Class To Hold Public Variables For All Other Classes
+            </summary>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="F:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.namespace_StoredProcedures">
+            <summary>
+            Placeholder for the stored procedures
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.ParseStoredProcedures(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings,ACT.Core.Interfaces.DataAccess.I_Db)">
+            <summary>
+            Parse the Stored Procedures
+            </summary>
+            <param name="DataBase"></param>
+            <param name="CodeSettings"></param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateStoredProcedureClass(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings,ACT.Core.Interfaces.DataAccess.I_Db)">
+            <summary>
+            Generates All The Stored Procedures
+            </summary>
+            <param name="CodeSettings"></param>
+            <param name="DataBase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateStoredProcedureCode(ACT.Core.Interfaces.DataAccess.I_DbStoredProcedure,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate a Stored Procedure Code To Execute
+            </summary>
+            <param name="Proc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateStoredProceduresFile(System.Collections.Generic.List{ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode},ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Supports Multiple Files
+            </summary>
+            <param name="Code"></param>
+            <param name="CodeSettings"></param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateUserLayer(System.Collections.Generic.List{ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode},ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate USER Layer Code
+            </summary>
+            <param name="Code"></param>
+            <param name="CodeSettings"></param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateBaseLayer(System.Collections.Generic.List{ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode},ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate the BASE Layer Code
+            </summary>
+            <param name="Code"></param>
+            <param name="CodeSettings"></param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateCSSolution(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate the Solution and the Project within the Solution
+            </summary>
+            <param name="CodeSettings"></param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateCSProject(System.Collections.Generic.List{ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode},ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate the CS Project Code.  Updated to VS 2017 (TODO)
+            </summary>
+            <param name="Code"></param>
+            <param name="CodeSettings"></param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateViewAccessCode(System.Collections.Generic.List{ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode},ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            TODO CHECK 
+            </summary>
+            <param name="Code"></param>
+            <param name="CodeSettings"></param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.Compile(System.Collections.Generic.List{ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode},ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Compiles the Code Into a DLL
+            </summary>
+            <param name="OnlyBase"></param>
+            <param name="Code"></param>
+            <param name="CodeSettings"></param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateEnum(System.Collections.Generic.Dictionary{System.String,System.Int32},System.String)">
+            <summary>
+            Generates The Enums
+            </summary>
+            <param name="NameValues">Name And Values To Generate</param>
+            <param name="TableName">Table Name of EnumTable</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateEnums(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generates The Enums..  This is a Specific Class That Utilizes a Table Named _GeneratorEnums
+            </summary>
+            <param name="Table"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateGenericDBAccess(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generates the Default Data access
+            </summary>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateExportMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate The Export Method Currently Supports XML and JSON
+            </summary>
+            <param name="Table"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateCreateMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generates the Create Method for the Table
+            </summary>
+            <param name="Table">ACT.Core.Interfaces.DataAccess.IDbTable - Table Information</param>
+            <param name="CodeSettings">ACT.Core.Interfaces.DataAccess.ICodeGenerationSettings - Code Settings</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateBlankUpdateMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            
+            </summary>
+            <param name="Table"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateBlankDeleteMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            
+            </summary>
+            <param name="Table"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateUpdateMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generates the Update Method based on the table
+            </summary>
+            <param name="Table">ACT.Core.Interfaces.DataAccess.IDbTable - Table Information</param>
+            <param name="CodeSettings">ACT.Core.Interfaces.DataAccess.ICodeGenerationSettings - Code Settings</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateDeleteMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            
+            </summary>
+            <param name="Table">ACT.Core.Interfaces.DataAccess.IDbTable - Table Information</param>
+            <param name="CodeSettings">ACT.Core.Interfaces.DataAccess.ICodeGenerationSettings - Code Settings</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateChildDeleteMethods(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            TODO
+            </summary>
+            <param name="Table"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.HealthCheck">
+            <summary>
+            Health Check Runs the Requirement Check.  It also checks other items like other Interfaces (TODO)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.ReturnSystemSettingRequirements">
+            <summary>
+            Returns a list of System Settings Required In Order For This Plugin To Work
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.SetImpersonate(ACT.Core.Interfaces.Security.Authentication.I_UserInfo)">
+            <summary>
+            Impersonate a User
+            </summary>
+            <param name="Info">I_UserInfo that represents the user to impersonate and execute under</param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateWebServiceLayer(System.Collections.Generic.List{ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode},ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate All The Web Service Physical Files
+            </summary>
+            <param name="Code"></param>
+            <param name="CodeSettings"></param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateWebServices(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate REST Services
+            </summary>
+            <param name="Table"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGenerator.GenerateWebServicesSoap(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate the WebServices Classes
+            </summary>
+            <param name="Table"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite">
+            <summary>
+            Internal Code Generation Class Generates C# Code
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateWebFormCode(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            TODO
+            </summary>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateCode(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate the Code Base On the IDB Database and The Code Settings Passed In
+            </summary>
+            <param name="Database">ACT.Core.Interfaces.DataAccess.IDb - Database Containing the Extracted Meta Data</param>
+            <param name="CodeSettings">ACT.Core.Interfaces.CodeGeneration.ICodeGenerationSettings - Code Generation Settings</param>
+            <returns>Generated Code in a List</returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateCode(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate The Tables Code using the Code Settings
+            </summary>
+            <param name="Table">ACT.Core.Interfaces.DataAccess.IDbTable - Table Information</param>
+            <param name="CodeSettings">ACT.Core.Interfaces.DataAccess.ICodeGenerationSettings - Code Settings</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateStoredProcedureClass(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings,ACT.Core.Interfaces.DataAccess.I_Db)">
+            <summary>
+            Generates All The Stored Procedures
+            </summary>
+            <param name="CodeSettings"></param>
+            <param name="DataBase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateStaticClass(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generates a Static Class To Hold Public Variables For All Other Classes
+            </summary>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateCode(ACT.Core.Interfaces.DataAccess.I_Db,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate the Code Base On the IDB Database and The Code Settings Passed In
+            </summary>
+            <param name="Database">ACT.Core.Interfaces.DataAccess.IDb - Database Containing the Extracted Meta Data</param>
+            <param name="CodeSettings">ACT.Core.Interfaces.CodeGeneration.ICodeGenerationSettings - Code Generation Settings</param>
+            <returns>Generated Code in a List</returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.Compile(System.Collections.Generic.List{ACT.Core.Interfaces.CodeGeneration.I_GeneratedCode},ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Compiles the Code Into a DLL
+            </summary>
+            <param name="OnlyBase"></param>
+            <param name="Code"></param>
+            <param name="CodeSettings"></param>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateEnum(System.Collections.Generic.Dictionary{System.String,System.Int32},System.String)">
+            <summary>
+            Generates The Enums
+            </summary>
+            <param name="NameValues">Name And Values To Generate</param>
+            <param name="TableName">Table Name of EnumTable</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateEnums(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generates The Enums..  This is a Specific Class That Utilizes a Table Named _GeneratorEnums
+            </summary>
+            <param name="Table"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateGenericDBAccess(ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generates the Default Data access
+            </summary>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateExportMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generate The Export Method Currently Supports XML and JSON
+            </summary>
+            <param name="Table"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateCreateMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generates the Create Method for the Table
+            </summary>
+            <param name="Table">ACT.Core.Interfaces.DataAccess.IDbTable - Table Information</param>
+            <param name="CodeSettings">ACT.Core.Interfaces.DataAccess.ICodeGenerationSettings - Code Settings</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateBlankUpdateMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            
+            </summary>
+            <param name="Table"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateBlankDeleteMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            
+            </summary>
+            <param name="Table"></param>
+            <param name="CodeSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateUpdateMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            Generates the Update Method based on the table
+            </summary>
+            <param name="Table">ACT.Core.Interfaces.DataAccess.IDbTable - Table Information</param>
+            <param name="CodeSettings">ACT.Core.Interfaces.DataAccess.ICodeGenerationSettings - Code Settings</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.CodeGeneration.ACT_CodeGeneratorSQLite.GenerateDeleteMethod(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.CodeGeneration.I_CodeGenerationSettings)">
+            <summary>
+            
+            </summary>
+            <param name="Table">ACT.Core.Interfaces.DataAccess.IDbTable - Table Information</param>
+            <param name="CodeSettings">ACT.Core.Interfaces.DataAccess.ICodeGenerationSettings - Code Settings</param>
+            <returns></returns>
+        </member>
+        <member name="T:ACT.Plugins.Common.ACT_ErrorLogging">
+            <summary>
+            ACT Error Logging Class
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.Common.ACT_ErrorLogging.LogError(System.String,System.String,System.Exception,System.String,ACT.Core.Enums.ErrorLevel)">
+            <summary>
+            Implement the LogError Method
+            </summary>
+            <param name="className"></param>
+            <param name="summary"></param>
+            <param name="ex"></param>
+            <param name="additionInformation"></param>
+            <param name="errorType"></param>
+        </member>
+        <member name="M:ACT.Plugins.Communication.ACT_Emails.ReturnSystemSettingRequirements">
+            <summary>
+            Returns the Required System Settings
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.Communication.SMTP2GO.LogError(System.String,System.String,System.Exception,System.String,ACT.Core.Enums.ErrorLevel)">
+            <summary>
+            Log Error Using ACT - Helper
+            </summary>
+            <param name="className"></param>
+            <param name="summary"></param>
+            <param name="ex"></param>
+            <param name="additionInformation"></param>
+            <param name="errorType"></param>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_QueryResult.HealthCheck">
+            <summary>
+            This class is always healthy as there are no dependancies required.
+            </summary>
+            <returns>Healthy Test Result</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_QueryResult.FirstDataTable_WithRows">
+            <summary>
+            Returns the First Data Table With Rows. 
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ACT.Plugins.DataAccess.ACT_IDb">
+            <summary>
+            This class Implements the IDB Interface
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.Tables">
+            <summary>
+            Get / Set the Tables
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.Views">
+            <summary>
+            Get / Set the DB Views
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.Types">
+            <summary>
+            Get / Set the DB Types
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.StoredProcedures">
+            <summary>
+            Get / Set the DB Stored Procedures
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.TableNames">
+            <summary>
+            Returns the Table Names
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.StoredProcedureNames">
+            <summary>
+            Returns the Stored Procedures
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.TypeNames">
+            <summary>
+            Returns the Type Names
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.ViewNames">
+            <summary>
+            Returns the View Names
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.TableCount">
+            <summary>
+            Return the Number of Tables
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.ViewCount">
+            <summary>
+            Return the Number of Views
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.DataAccessClass">
+            <summary>
+            Gets the Data Access Class being Used
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDb.Name">
+            <summary>
+            Get / Set the Database Name
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.#ctor">
+            <summary>
+            Empty Contructor
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.Equals(System.Object)">
+            <summary>
+            Doesnt Follow Normal Logic.  May need to rewrite
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.GetHashCode">
+            <summary>
+            Generate a Hash Code Based On Object Values
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.Validate">
+            <summary>
+            Validates the Current Structure of the Database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.GetView(System.Int32)">
+            <summary>
+            Gets a view based on the index of the Views Position
+            </summary>
+            <param name="Index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.GetTableIndex(System.String)">
+            <summary>
+            Internal Get Table Index By Name (Case Insensitive)
+            </summary>
+            <param name="Name"></param>
+            <returns>Index or -1</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.AddTable(ACT.Core.Interfaces.DataAccess.I_DbTable)">
+            <summary>
+            Add a table to the Database.  This doesn't add to the database until you Save
+            </summary>
+            <param name="Table">Table To Add</param>
+            <returns>I_TestResult Result of addition</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.AddView(ACT.Core.Interfaces.DataAccess.I_DbView)">
+            <summary>
+            Adds a view to the Database.  This doesn't add to the database until you Save
+            </summary>
+            <param name="View">View to Add</param>
+            <returns>I_TestResult Result of the Addition</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.RemoveTable(System.String,System.Boolean)">
+            <summary>
+            Remove a Table from the current definition
+            </summary>
+            <param name="Name">Fully Qualified Name of Table</param>
+            <param name="IgnoreCase">Ignore Case?</param>
+            <returns>I_TestResult</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.RemoveTable(System.Int32)">
+            <summary>
+            Removes a table at Index. This doesn't add to the database until you Save
+            </summary>
+            <param name="Index"></param>
+            <returns>I_TestResult Result of Removal</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.ModifyTable(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.DataAccess.I_DbTable)">
+            <summary>
+            Modify Table 
+            </summary>
+            <param name="Original">Original Table To Modify</param>
+            <param name="New">New Table </param>
+            <returns>I_TestResult with Modification Success</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.ModifyTable(System.String,ACT.Core.Interfaces.DataAccess.I_DbTable)">
+            <summary>
+            Replace Table With New Table
+            </summary>
+            <param name="Original">Name Case Insensitive</param>
+            <param name="New"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.GetTable(System.String,System.Boolean)">
+            <summary>
+            Get table by name
+            </summary>
+            <param name="Name">Table Name</param>
+            <param name="IgnoreCase">Ignore Table Name Case Sesitivity</param>
+            <returns>IDbTable or Null if not found</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.GetTable(System.Int32)">
+            <summary>
+            Get table by Index
+            </summary>
+            <param name="Index">Index of List</param>
+            <returns>IDbTable or null if Index Not Found</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.GetView(System.String,System.Boolean)">
+            <summary>
+            Get table by name
+            </summary>
+            <param name="Name">Table Name</param>
+            <param name="IgnoreCase">Ignore Table Name Case Sesitivity</param>
+            <returns>IDbTable or Null if not found</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.Dispose">
+            <summary>
+            Disposes the Class
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.SetImpersonate(ACT.Core.Interfaces.Security.Authentication.I_UserInfo)">
+            <summary>
+            Sets the Impersonation of the User Making Database Commands Which are not implmented.
+            </summary>
+            <param name="UserInfo"></param>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.ReturnSystemSettingRequirements">
+            <summary>
+            Returns a List of SystemSettingRequirements
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.ValidatePluginRequirements">
+            <summary>
+            Validate the Plugin
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.op_Equality(ACT.Plugins.DataAccess.ACT_IDb,ACT.Plugins.DataAccess.ACT_IDb)">
+            <summary>
+            My Implementation of the == Operator
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.op_Inequality(ACT.Plugins.DataAccess.ACT_IDb,ACT.Plugins.DataAccess.ACT_IDb)">
+            <summary>
+            My Implementation of the != Operator
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDb.ExportXMLData">
+            <summary>
+            Override the ExportXML to Provide XML Functionality
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ACT.Plugins.DataAccess.ACT_IDbColumn">
+            <summary>
+            Represents a IDbColumn 
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbColumn.#ctor">
+            <summary>
+            Basic Constructor
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbColumn.CompareTo(System.Object)">
+            <summary>
+            Compares this to obj
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbColumn.op_Equality(ACT.Plugins.DataAccess.ACT_IDbColumn,ACT.Plugins.DataAccess.ACT_IDbColumn)">
+            <summary>
+            My Implementation of the == Operator
+            </summary>
+            <param name="x">DIP_ID</param>
+            <param name="y"></param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbColumn.op_Inequality(ACT.Plugins.DataAccess.ACT_IDbColumn,ACT.Plugins.DataAccess.ACT_IDbColumn)">
+            <summary>
+            My Implementation of the != Operator
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbColumn.ExportXMLData">
+            <summary>
+            Exports the Column to XML
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.Name">
+            <summary>
+            Fully Qualified Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.ShortName">
+            <summary>
+            Column Short Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.DataType">
+            <summary>
+            Column Data Type
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.Default">
+            <summary>
+            Default Value i.e GetDate() or 1 or '1' etc..
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.Nullable">
+            <summary>
+            Allows Nulls
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.Size">
+            <summary>
+            Size of Data Column
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.Precision">
+            <summary>
+            The Precision
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.Scale">
+            <summary>
+            The Scale
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.Identity">
+            <summary>
+            Is this an Identity Column
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.IdentityIncrement">
+            <summary>
+            Identity Increment Of The Auto Generated Field
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.IdentitySeed">
+            <summary>
+            Identity Seed of Auto Incremented Field
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.AutoIncrement">
+            <summary>
+            Auto Increment
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbColumn.IsPrimaryKey">
+            <summary>
+            Is this Column a Primary Key
+            </summary>
+        </member>
+        <member name="T:ACT.Plugins.DataAccess.ACT_IDbRelationships">
+            <summary>
+            This represents a IDbRelationship
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbRelationships.ExportXMLData">
+            <summary>
+            Override the ExportXML so it functions
+            </summary>
+            <returns>XML String</returns>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbRelationships.ShortTableName">
+            <summary>
+            Short Name of Table Where Relationship is Found
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbRelationships.ShortExternal_TableName">
+            <summary>
+            Short Name of Table Where Relationship is Matched
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbRelationships.RelationshipName">
+            <summary>
+            Relationship Name..  Changed depending on Origin (FK_NAME,PK_NAME)
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbRelationships.External_TableName">
+            <summary>
+            Table Name Where Relationship Matched (Fully Qualified)
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbRelationships.External_ColumnName">
+            <summary>
+            Column Name Where Relationship Is Matched
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbRelationships.IsForeignKey">
+            <summary>
+            Specifies if this relationship is a ForeignKey or not Depending on Origin
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbRelationships.ColumnName">
+            <summary>
+            Column Name Where Relationship Is Found
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbRelationships.TableName">
+            <summary>
+            Table Name Where Relationship Is Found (Fully Qualified)
+            </summary>
+        </member>
+        <member name="T:ACT.Plugins.DataAccess.ACT_IDbTable">
+            <summary>
+            This class Implements the IDbTable Interface
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.#ctor">
+            <summary>
+            Create Events to Listen to any modifiactions to the Table
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbTable.ColumnCount">
+            <summary>
+            Returns the Total Column Count
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbTable.RelationshipCount">
+            <summary>
+            Returns the Number of ForeignKeys
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbTable.IsPackageTable">
+            <summary>
+            Specifies if the Table is a Package Table (Used For Modules Only)
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbTable.IsSystem">
+            <summary>
+            Specified If the Table is a System Table
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbTable.IsUserTable">
+            <summary>
+            Specifies if the Table is a User Table
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbTable.Name">
+            <summary>
+            Specifies the Name of the Table
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbTable.PrimaryKeyColumnName">
+            <summary>
+            Returns the Primary Key Column Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbTable.ShortName">
+            <summary>
+            Returns the Short Name Only. Not the FQN
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbTable.Description">
+            <summary>
+            Returns the Description
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbTable.Owner">
+            <summary>
+            Returns the Short Name Only. Not the FQN
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.AddColumn(ACT.Core.Interfaces.DataAccess.I_DbColumn)">
+            <summary>
+            Adds a Table the the Internal List
+            </summary>
+            <param name="Column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.AddRelationship(ACT.Core.Interfaces.DataAccess.I_DbRelationship)">
+            <summary>
+            Adds a ForeignKey to the Table
+            </summary>
+            <param name="Key">IDbForeignKey</param>
+            <returns>True On Success</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.Equals(System.Object)">
+            <summary>
+            Doesnt Follow Normal Logic.  May need to rewrite
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.GetColumn(System.String,System.Boolean)">
+            <summary>
+            Gets a Column based on Name
+            </summary>
+            <param name="Name">Name of Column</param>
+            <param name="IgnoreCase">Ignore Case?</param>
+            <returns>IDbColumn</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.GetColumn(System.Int32)">
+            <summary>
+            Gets a Column based on Index
+            </summary>
+            <param name="Index">Index of Column</param>        
+            <returns>IDbColumn</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.GetDeleteDataSQL(ACT.Core.Interfaces.DataAccess.I_DbWhereStatement)">
+            <summary>
+            Generates a Delete Data SQL Statememt
+            </summary>
+            <param name="Where">List of IDbWhereStatement</param>
+            <returns>SQL String</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.GetRelationship(System.String,System.Boolean)">
+            <summary>
+            Gets a ForeignKey by Name
+            </summary>
+            <param name="Column_Name">Name of ForeignKey</param>
+            <param name="IgnoreCase">Ignore Case?</param>
+            <returns>IDBForeignKey</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.GetRelationship(System.Int32)">
+            <summary>
+            Gets a ForeignKey by
+            </summary>
+            <param name="Index">Index of Key</param>
+            <returns>IDbForeignKey</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.GetHashCode">
+            <summary>
+            Generate a Hash Code Based On Object Values
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.GetInsertDataSQL(System.Collections.Generic.List{System.String})">
+            <summary>
+            Generates Insert Data SQL Based on the List of Fields Passed
+            </summary>
+            <param name="Fields"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.GetUpdateDataSQL(System.Collections.Generic.List{System.String},ACT.Core.Interfaces.DataAccess.I_DbWhereStatement)">
+            <summary>
+            Generates an Update Statement With the List of Defined Where Statements
+            </summary>
+            <param name="Fields">List Of Fields to Include</param>
+            <param name="Where">Where Statement</param>
+            <returns>SQL string</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.GetUpdateDataSQL(System.Collections.Generic.List{System.String})">
+            <summary>
+            Generates an Update Statement
+            </summary>
+            <param name="Fields">List Of Fields to Include</param>        
+            <returns>SQL string</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.MoveColumnDown(System.String)">
+            <summary>
+            Trys to move a Column Down (CaseSensitive)
+            </summary>
+            <param name="ColName">Column Name</param>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.MoveColumnUp(System.String)">
+            <summary>
+            Tries to move a Column Up (Case Sensitive)
+            </summary>
+            <param name="ColName">Column Name to Move</param>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.RemoveColumn(System.Int32)">
+            <summary>
+            Removes a Column at the specified Index
+            </summary>
+            <param name="Index">Index to remove at</param>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.RemoveColumn(System.String,System.Boolean)">
+            <summary>
+            Removes a Column by Name
+            </summary>
+            <param name="Name">Name of Column to Remove</param>
+            <param name="IgnoreCase">Ignore the Case</param>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.Remove_Relationship(System.Int32)">
+            <summary>
+            Trys to remove a Foreign Key by Index
+            </summary>
+            <param name="Index"></param>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.Remove_Relationship(System.String,System.Boolean)">
+            <summary>
+            Trys to remove a foreignKey by Name
+            </summary>
+            <param name="Name">Name of ForeignKey</param>
+            <param name="IgnoreCase">Ignore Case?</param>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.ListChanged(System.Object,System.ComponentModel.ListChangedEventArgs)">
+            <summary>
+            This Method is used to Trigger Change Events
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.ExportXMLData">
+            <summary>
+            Override the ExportXML to Provide XML Functionality
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.Dispose">
+            <summary>
+            Override the Dispose to Provide Functionality
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.CompareTo(System.Object)">
+            <summary>
+            Compares One Object To Another ONLY SUPPORTS SPECIFIC CLASS IMPLEMENTATIONs
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.op_Equality(ACT.Plugins.DataAccess.ACT_IDbTable,ACT.Plugins.DataAccess.ACT_IDbTable)">
+            <summary>
+            My Implementation of the == Operator
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbTable.op_Inequality(ACT.Plugins.DataAccess.ACT_IDbTable,ACT.Plugins.DataAccess.ACT_IDbTable)">
+            <summary>
+            My Implementation of the != Operator
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns>true or false</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbView.CompareTo(System.Object)">
+            <summary>
+            Compares One Object To Another ONLY SUPPORTS SPECIFIC CLASS IMPLEMENTATIONs
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbView.AddColumn(ACT.Core.Interfaces.DataAccess.I_DbColumn)">
+            <summary>
+            Adds a Table the the Internal List
+            </summary>
+            <param name="Column"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbView.GetColumn(System.String,System.Boolean)">
+            <summary>
+            Gets a Column based on Name
+            </summary>
+            <param name="Name">Name of Column</param>
+            <param name="IgnoreCase">Ignore Case?</param>
+            <returns>IDbColumn</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbView.GetColumn(System.Int32)">
+            <summary>
+            Gets a Column based on Index
+            </summary>
+            <param name="Index">Index of Column</param>        
+            <returns>IDbColumn</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbView.GetHashCode">
+            <summary>
+            Generate a Hash Code Based On Object Values
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbView.Dispose">
+            <summary>
+            Override the Dispose to Provide Functionality
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbView.ExportXMLData">
+            <summary>
+            Override the ExportXML to Provide XML Functionality
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:ACT.Plugins.DataAccess.ACT_IDbWhereStatemet">
+            <summary>
+            Represents a Where Statement
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbWhereStatemet.#ctor">
+            <summary>
+            Blanket Constructor
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_IDbWhereStatemet.ColumnName">
+            <summary>
+            Overridden by IDBColumn Value if Set
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_IDbWhereStatemet.HealthCheck">
+            <summary>
+            This class is always healthy as there are no dependancies required.
+            </summary>
+            <returns>Healthy Test Result</returns>
+        </member>
+        <member name="T:ACT.Plugins.DataAccess.ACT_MSSQL">
+            <summary>
+            SQL Server IDataAccess Class
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.GenerateWhereStatement(ACT.Core.Interfaces.DataAccess.I_DbWhereStatement,System.String)">
+            <summary>
+            Returns a Where Statement Appened to the WhereStatement Passed In
+            </summary>
+            <param name="WhereStatement"></param>
+            <param name="Where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.#ctor">
+            <summary>
+            Generic Constructor.  Attempts to Set the Connection String to the Setting Name "DefaultConnectionString"
+            </summary>     
+            <exception cref="T:System.InvalidOperationException">When the Connection String is Missing or Blank</exception>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.RunCommand(System.String,System.Collections.Generic.List{System.Data.IDataParameter},System.Boolean,System.Data.CommandType)">
+            <summary>
+            Runs a  SQL Command Against a Database
+            </summary>
+            <param name="CommandText">Command Text</param>
+            <param name="Params">List of Params</param>
+            <param name="ReturnsRows">Return Rows Test</param>
+            <param name="CmdType">Command Type</param>
+            <returns>IQueryResult</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.RunCommand(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.Generic.List{System.Data.IDataParameter}},System.Collections.Generic.List{System.Boolean},System.Collections.Generic.List{System.Data.CommandType})">
+            <summary>
+            Runs a List of SQL Command Against a Database
+            </summary>
+            <param name="CommandTexts">List of Command Texts</param>
+            <param name="Params">List of a List of Params</param>
+            <param name="ReturnsRows">List of Return Rows Test</param>
+            <param name="CmdTypes">List of Command Types</param>
+            <returns>IQueryResult</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.ExecuteDynamicProcedure``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)">
+            <summary>
+            Execute a Stored Procedure Return the Type Indicated from the Column Indicated.
+            </summary>
+            <typeparam name="T">Return Type - MUST BE VALUE TYPE ATM</typeparam>
+            <param name="Name">Stored Procedure Name</param>
+            <param name="Parameters">SQL Parameters</param>
+            <param name="ColumnToReturn">Column Ordinal Position to return</param>
+            <returns>T Single Value</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.RunCommand(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Collections.Generic.List{System.Data.IDataParameter}},System.Collections.Generic.List{System.Boolean},System.Boolean,System.Boolean,System.Collections.Generic.List{System.Data.CommandType})">
+            <summary>
+            Runs a SQL Command Against a Database
+            </summary>
+            <param name="CommandTexts">List of Command Texts</param>
+            <param name="Params">List of Params</param>
+            <param name="ReturnsRows">List of Return Rows Test</param>
+            <param name="UseTransactions">Use Transactions for this List of Commands</param>
+            <param name="AutoRollback">Rollback Transaction on Failure</param>
+            <param name="CmdTypes">List of Command Types</param>
+            <returns>IQueryResult</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.Open">
+            <summary>
+            Opens the Connection using the Set Connection String
+            </summary>
+            <returns>True if Connection False If Not</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.Open(System.String)">
+            <summary>
+            Opens the Specified Connection String
+            </summary>
+            <param name="ConnectionString">DB Connection String - Encrypts this value once connected.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.Open(System.String,System.Boolean)">
+            <summary>
+            Opens the specified Connection
+            </summary>
+            <param name="ConnectionString">DB Connection String</param>
+            <param name="EncryptConnectionString">Do you want to Encrypt the Connection String Using Internal Encrypt Methods?</param>
+            <returns>True if Connected</returns>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_MSSQL.Connected">
+            <summary>
+            Test if the Current Connection is Open
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_MSSQL.ConnectionString">
+            <summary>
+            Returns the currently stored Connection String.  By default this value is encrypted
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.GetStoredSQLQuery(System.String,System.String)">
+            <summary>
+            Not Implemented
+            </summary>
+            <param name="Name"></param>
+            <param name="GroupName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.BeginTransaction">
+            <summary>
+            Start a Transaction
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.DisposeObjects">
+            <summary>
+            Disposes the Current Connection and Command
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.CommitTransaction">
+            <summary>
+            Trys to Commit The Transaction
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.RollbackTransaction">
+            <summary>
+            Attempts to Rollback the Transaction
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.InsertData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            Inserts Data into the Exportable Database Table.  Replaces Null with DBNull and throws error on missing data. Also Inserts defaults on null
+            </summary>
+            <param name="TableName">Table to Insert Data To</param>
+            <param name="FieldsAndValues">Fields and Values of the Table You Want to InsertData</param>
+            <returns>IQueryResult</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.UpdateData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},ACT.Core.Interfaces.DataAccess.I_DbWhereStatement)">
+            <summary>
+            Updates Data in a Exportable Database Table. 
+            </summary>
+            <param name="TableName"></param>
+            <param name="FieldsAndValues"></param>
+            <param name="Where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.UpdateData(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Collections.Generic.List{ACT.Core.Interfaces.DataAccess.I_DbWhereStatement})">
+            <summary>
+            Updates Data in a Exportable Database Table. 
+            </summary>
+            <param name="TableName"></param>
+            <param name="FieldsAndValues"></param>
+            <param name="WhereStatements"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.DeleteData(System.String,ACT.Core.Interfaces.DataAccess.I_DbWhereStatement)">
+            <summary>
+            Deletes Data From a Exportable Database Table
+            </summary>
+            <param name="TableName"></param>
+            <param name="Where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.InsertData(ACT.Core.Interfaces.DataAccess.I_DbTable,System.Collections.Generic.Dictionary{ACT.Core.Interfaces.DataAccess.I_DbColumn,System.Object})">
+            <summary>
+            Inserts Data into a Exportable Database Table
+            </summary>
+            <param name="Table"></param>
+            <param name="FieldsAndValues"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.UpdateData(ACT.Core.Interfaces.DataAccess.I_DbTable,System.Collections.Generic.Dictionary{ACT.Core.Interfaces.DataAccess.I_DbColumn,System.Object},ACT.Core.Interfaces.DataAccess.I_DbWhereStatement)">
+            <summary>
+            Updates a Exportable Database Table
+            </summary>
+            <param name="Table"></param>
+            <param name="FieldsAndValues"></param>
+            <param name="Where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.UpdateData(ACT.Core.Interfaces.DataAccess.I_DbTable,System.Collections.Generic.Dictionary{ACT.Core.Interfaces.DataAccess.I_DbColumn,System.Object})">
+            <summary>
+            Updates an Exportable Database Table
+            </summary>
+            <param name="Table"></param>
+            <param name="FieldsAndValues"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.DeleteData(ACT.Core.Interfaces.DataAccess.I_DbTable,ACT.Core.Interfaces.DataAccess.I_DbWhereStatement)">
+            <summary>
+            Deletes Data From a Exportable Database Table
+            </summary>
+            <param name="Table"></param>
+            <param name="Where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.DeleteData(ACT.Core.Interfaces.DataAccess.I_DbTable,System.Collections.Generic.Dictionary{ACT.Core.Interfaces.DataAccess.I_DbColumn,System.Object},System.Boolean)">
+            <summary>
+            Recursive DELETE NOT IMPLEMENTED
+            </summary>
+            <param name="Table"></param>
+            <param name="FieldsAndValues"></param>
+            <param name="RecursiveDelete"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.ReturnSystemSettingRequirements">
+            <summary>
+            Returns a List of SystemSettingRequirements
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_MSSQL.Dispose">
+            <summary>
+            Overrides and Implements the Dispose Method.
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_SQLite3.Open">
+            <summary>
+            Opens the Connection using the Set Connection String
+            </summary>
+            <returns>True if Connection False If Not</returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_SQLite3.Open(System.String)">
+            <summary>
+            Opens the Specified Connection String
+            </summary>
+            <param name="ConnectionString">DB Connection String - Encrypts this value once connected.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_SQLite3.Open(System.String,System.Boolean)">
+            <summary>
+            Opens the specified Connection
+            </summary>
+            <param name="ConnectionString">DB Connection String</param>
+            <param name="EncryptConnectionString">Do you want to Encrypt the Connection String Using Internal Encrypt Methods?</param>
+            <returns>True if Connected</returns>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_SQLite3.Connected">
+            <summary>
+            Test if the Current Connection is Open
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.DataAccess.ACT_SQLite3.ConnectionString">
+            <summary>
+            Returns the currently stored Connection String.  By default this value is encrypted
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_SQLite3.DisposeObjects">
+            <summary>
+            Disposes the Current Connection and Command
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_SQLite3.BeginTransaction">
+            <summary>
+            Start a Transaction
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_SQLite3.CommitTransaction">
+            <summary>
+            Trys to Commit The Transaction
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_SQLite3.RollbackTransaction">
+            <summary>
+            Attempts to Rollback the Transaction
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_SQLite3.ReturnSystemSettingRequirements">
+            <summary>
+            Returns a List of SystemSettingRequirements
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_SQLite3.Dispose">
+            <summary>
+            Overrides and Implements the Dispose Method.
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.DataAccess.ACT_SQLite3.ExecuteDynamicProcedure``1(System.String,System.Collections.Generic.Dictionary{System.String,System.Object},System.Int32)">
+            <summary>
+            Execute a Stored Procedure Return the Type Indicated from the Column Indicated.
+            </summary>
+            <typeparam name="T">Return Type - MUST BE VALUE TYPE ATM</typeparam>
+            <param name="Name">Stored Procedure Name</param>
+            <param name="Parameters">SQL Parameters</param>
+            <param name="ColumnToReturn">Column Ordinal Position to return</param>
+            <returns>T Single Value</returns>
+        </member>
+        <member name="T:ACT.Plugins.Random.ACT_CryptoRandom">
+            <summary>
+             Represents a pseudo-random number generator, a device that produces random data.
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.Random.ACT_CryptoRandom.#ctor">
+            <summary>
+             Creates an instance of the default implementation of a cryptographic random number generator that can be used to generate random data.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ACT.Plugins.Random.ACT_CryptoRandom.GetBytes(System.Byte[])" -->
+        <member name="M:ACT.Plugins.Random.ACT_CryptoRandom.NextDouble">
+            <summary>
+             Returns a random number between 0.0 and 1.0.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ACT.Plugins.Random.ACT_CryptoRandom.Next(System.Int32,System.Int32)" -->
+        <member name="M:ACT.Plugins.Random.ACT_CryptoRandom.Next">
+            <summary>
+             Returns a nonnegative random number.
+            </summary>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ACT.Plugins.Random.ACT_CryptoRandom.Next(System.Int32)" -->
+        <member name="T:ACT.Plugins.Security.Authentication.ACT_Cloud_SecurityProvider">
+            <summary>
+            <c>ACT_Cloud_SecurityProvider</c> implements <c>ACT.Core.Interfaces.Security.Authentication.I_SecurityProvider</c> this allows
+            authentication to be used by installing the ACT Database
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Security.Authentication.ACT_Cloud_SecurityProvider.APIKey">
+            <summary>
+            Configure the Security Key
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Security.Authentication.ACT_Cloud_SecurityProvider.APISecret">
+            <summary>
+            Configure The Security App
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.Security.Authentication.ACT_Cloud_SecurityProvider.LoginUser(System.Guid,System.String,System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="ApplicationID"></param>
+            <param name="UserName"></param>
+            <param name="Password"></param>
+            <param name="AdditionalData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.Security.Authentication.ACT_Cloud_SecurityProvider.CreateUser(ACT.Core.Interfaces.Security.Authentication.I_UserInfo,System.Guid,System.String)">
+            <summary>
+            Creates a user in the ACT Cloud System
+            </summary>
+            <param name="BasicInfo"></param>
+            <param name="ApplicationID"></param>
+            <param name="AdditionalData"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ACT.Plugins.Security.Authentication.ACT_Cloud_SecurityProvider.ProviderUID">
+            <summary>
+            A Unique Provider Identity: ONLY Registered DLL's Obtain a Provider UID.  Others Need to leave This Blank
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Security.Authentication.ACT_Cloud_SecurityProvider.ConfigurationSettings">
+            <summary>
+            Additional Settings Used By This Plugin (May or Maynot be In SystemConfiguration.xml
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.Security.Authentication.ACT_Cloud_SecurityProvider.IsTokenValid(System.Guid,System.String,System.String)">
+            <summary>
+            Checks the Token Validity
+            </summary>
+            <param name="ApplicationID"></param>
+            <param name="TokenID"></param>
+            <param name="AdditionalData"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ACT.Plugins.Security.Authentication.ACT_SIMPLE_AD_PROVIDER">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:ACT.Plugins.Security.Authentication.ACT_UserInfo">
+            <summary>
+            Generic Implementation of IUserInfo.  Used For Purely Login Purposes Does not support groups, addresses etc..
+            </summary>
+        </member>
+        <member name="T:ACT.Plugins.Security.Encryption.ACT_Rijndael">
+            <summary>
+            Default Encryption Plugin - Used in Non Absolut Secure Places
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.Encrypt(System.String)">
+            <summary>
+            Internal Encryption Routine
+            </summary>
+            <param name="ClearText">Text To Be Encrypted</param>
+            <returns>Encrypted String Duh..</returns>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.Encrypt(System.String,System.String)">
+            <summary>
+            <para>Encrypt</para> a string into a string using a password
+            </summary>
+            <param name="clearText">Text to be Encrypted</param>
+            <param name="Password">Password to use</param>
+            <returns>Encrypted Base 64 String</returns>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or clearText is Empty</exception>     
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.Encrypt(System.Byte[],System.String)">
+            <summary>
+            Encrypt a byte array into a encrypted byte array using a password <paramref name="clearData"/>
+            </summary>
+            <seealso cref="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.Encrypt(System.Byte[],System.String)"/>
+            <param name="clearData">Byte Array to be Encrypted</param>
+            <param name="Password">Password to use</param>
+            <returns>Encrypted Byte Array</returns>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or clearText is Empty</exception>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.Encrypt(System.String,System.String,System.String)">
+            <summary>
+            Encrypt a file into another file using a password
+            </summary>
+            <param name="fileIn">File To Encrypt</param>
+            <param name="fileOut">Output File To Encrpy to</param>
+            <param name="Password">Password to encrypt the file with</param>
+            <exception cref="T:System.IO.FileNotFoundException">Source File Not Found Or Output file can't be Created</exception>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or clearText is Empty</exception>        
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.Decrypt(System.String)">
+            <summary>
+            Decrypt using Internal Encryption
+            </summary>
+            <param name="ClearText">String to Unencrypt</param>
+            <returns>Clear Text.  Suprise!!!</returns>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.Decrypt(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Decrypt a byte array into a byte array using a key and an IV
+            </summary>
+            <param name="cipherData"></param>
+            <param name="Key"></param>
+            <param name="IV"></param>
+            <returns>byte Array</returns> 
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.Decrypt(System.String,System.String)">
+            <summary>
+            Decrypt a string into a string using a password
+            </summary>
+            <param name="cipherText">Encrypted Text (Base64)</param>
+            <param name="Password">PAssword to use (Must be 3 Characters)</param>
+            <returns>Unencrypted String</returns>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or cipherText is Empty</exception>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.Decrypt(System.Byte[],System.String)">
+            <summary>
+            Decrypt byte array into a byte array using a password
+            </summary>
+            <param name="cipherData">Encrypted Text (Base64)</param>
+            <param name="Password">PAssword to use (Must be 3 Characters)</param>
+            <returns>Unencrypted Byte Array</returns>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or cipherText is Empty</exception>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.Decrypt(System.String,System.String,System.String)">
+            <summary>
+            Decrypt a file into another file using a password
+            </summary>
+            <param name="fileIn">File to Decrypt</param>
+            <param name="fileOut">Output File</param>
+            <param name="Password">Password (3 Character Minimum)</param>
+            <exception cref="T:System.IO.FileNotFoundException">Source File Not Found Or Output file can't be Created</exception>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or clearText is Empty</exception>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.MD5(System.String)">
+            <summary>
+            Creates A MD5 Hash from a String
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_Rijndael.MD5ALT(System.String)">
+            <summary>
+            Creates A MD5 Hash from a String
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ACT.Plugins.Security.Encryption.ACT_KriptoC">
+            <summary>
+            Default Encryption Plugin - Used in Non Absolut Secure Places
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.HealthCheck">
+            <summary>
+            Returns the Health Check Of the Plugin
+            </summary>
+            <returns>True / False Indicating Readyness</returns>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.Encrypt(System.String)">
+            <summary>
+            Internal Encryption Routine
+            </summary>
+            <param name="ClearText">Text To Be Encrypted</param>
+            <returns>Encrypted String Duh..</returns>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.Encrypt(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Internal Encryption Cponsolidation Method Used by External Facing Methods
+            </summary>
+            <param name="clearData"></param>
+            <param name="Key"></param>
+            <param name="IV"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.Encrypt(System.String,System.String)">
+            <summary>
+            <para>Encrypt</para> a string into a string using a password
+            </summary>
+            <param name="clearText">Text to be Encrypted</param>
+            <param name="Password">Password to use</param>
+            <returns>Encrypted Base 64 String</returns>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or clearText is Empty</exception>     
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.Encrypt(System.Byte[],System.String)">
+            <summary>
+            Encrypt a byte array into a encrypted byte array using a password <paramref name="clearData"/>
+            </summary>
+            <seealso cref="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.Encrypt(System.Byte[],System.String)"/>
+            <param name="clearData">Byte Array to be Encrypted</param>
+            <param name="Password">Password to use</param>
+            <returns>Encrypted Byte Array</returns>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or clearText is Empty</exception>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.Encrypt(System.String,System.String,System.String)">
+            <summary>
+            Encrypt a file into another file using a password
+            </summary>
+            <param name="fileIn">File To Encrypt</param>
+            <param name="fileOut">Output File To Encrpy to</param>
+            <param name="Password">Password to encrypt the file with</param>
+            <exception cref="T:System.IO.FileNotFoundException">Source File Not Found Or Output file can't be Created</exception>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or clearText is Empty</exception>        
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.Decrypt(System.String)">
+            <summary>
+            Decrypt using Internal Encryption
+            </summary>
+            <param name="ClearText">String to Unencrypt</param>
+            <returns>Clear Text.  Suprise!!!</returns>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.Decrypt(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Decrypt a byte array into a byte array using a key and an IV
+            </summary>
+            <param name="cipherData"></param>
+            <param name="Key"></param>
+            <param name="IV"></param>
+            <returns>byte Array</returns> 
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.Decrypt(System.String,System.String)">
+            <summary>
+            Decrypt a string into a string using a password
+            </summary>
+            <param name="cipherText">Encrypted Text (Base64)</param>
+            <param name="Password">PAssword to use (Must be 3 Characters)</param>
+            <returns>Unencrypted String</returns>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or cipherText is Empty</exception>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.Decrypt(System.Byte[],System.String)">
+            <summary>
+            Decrypt byte array into a byte array using a password
+            </summary>
+            <param name="cipherData">Encrypted Text (Base64)</param>
+            <param name="Password">PAssword to use (Must be 3 Characters)</param>
+            <returns>Unencrypted Byte Array</returns>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or cipherText is Empty</exception>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.Decrypt(System.String,System.String,System.String)">
+            <summary>
+            Decrypt a file into another file using a password
+            </summary>
+            <param name="fileIn">File to Decrypt</param>
+            <param name="fileOut">Output File</param>
+            <param name="Password">Password (3 Character Minimum)</param>
+            <exception cref="T:System.IO.FileNotFoundException">Source File Not Found Or Output file can't be Created</exception>
+            <exception cref="T:System.InvalidOperationException">Throw if Password is Empty or clearText is Empty</exception>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.MD5(System.String)">
+            <summary>
+            Creates A MD5 Hash from a String
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.Security.Encryption.ACT_KriptoC.MD5ALT(System.String)">
+            <summary>
+            Creates A MD5 Hash from a String
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData">
+            <summary>
+            Plugin Data Class - SystemConfiguration Templates
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.#ctor">
+            <summary>
+            Needed For Serialization
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.#ctor(System.Int32)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="ID"></param>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.Update(System.Guid)">
+            <summary>
+            Update The Plugin Data for The Specified Template
+            </summary>
+            <param name="MemberID"></param>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.Delete(System.Guid)">
+            <summary>
+            Deletes This Record
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.Export(ACT.Core.Enums.Serialization.SerializationType,System.String)">
+            <summary>
+            Export This Data Record
+            </summary>
+            <param name="ExportType"></param>
+            <param name="EncryptionString"></param>
+            <returns></returns>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.ID">
+            <summary>
+            ID (INT)
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.Template_ID">
+            <summary>
+            Template ID (GUID)
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.InterfaceName">
+            <summary>
+            Interface Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.DLLName">
+            <summary>
+            DLL Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.FullClassName">
+            <summary>
+            Full Class Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.PluginArguments">
+            <summary>
+            Plugin Arguments
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_PluginData.StoreOnce">
+            <summary>
+            StoreOnce
+            </summary>
+        </member>
+        <member name="T:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate">
+            <summary>
+            Implements the ConfigTemplate Interface For Database Connections
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.#ctor">
+            <summary>
+            Needed For Serialization
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.#ctor(System.String)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="ID">Template ID</param>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.Member_ID">
+            <summary>
+            Member ID
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.Tags">
+            <summary>
+            Tags
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.IsPublic">
+            <summary>
+            Is Public
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.IsDefault">
+            <summary>
+            Is Default
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.Application_ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.PluginData">
+            <summary>
+            Plugin Data 
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.ConfigData">
+            <summary>
+            Template Data
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.Update(System.Boolean,System.Nullable{System.Guid})">
+            <summary>
+            Add / Update Template
+            </summary>
+            <param name="SetMemberIDToNull"></param>
+            <param name="MemberID"></param>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.Delete(System.Nullable{System.Guid})">
+            <summary>
+            Delete Template
+            <param name="MemberID"></param>
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate.Export(ACT.Core.Enums.Serialization.SerializationType)">
+            <summary>
+            Export the Template
+            </summary>
+            <param name="ExportType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data">
+            <summary>
+            Config Template Data Class 
+            TODO Add Logging of Error Message
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.#ctor">
+            <summary>
+            Needed For Serialization
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.#ctor(ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate)">
+            <summary>
+            just Sender
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.#ctor(System.Int32,ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate)">
+            <summary>
+            ACT Config Template Data Constructor
+            </summary>
+            <param name="ID"></param>
+            <param name="sender"></param>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.Export(ACT.Core.Enums.Serialization.SerializationType,System.String)">
+            <summary>
+            Export This Data Record
+            </summary>
+            <param name="ExportType"></param>
+            <param name="EncryptionString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.Update(System.Guid)">
+            <summary>
+            Update The Plugin Data for The Specified Template
+            </summary>
+            <param name="MemberID"></param>
+        </member>
+        <member name="M:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.Delete(System.Guid)">
+            <summary>
+            Deletes This Record
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.ID">
+            <summary>
+            ID
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.Template_ID">
+            <summary>
+            Template ID
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.Product_ID">
+            <summary>
+            Product ID
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.Name">
+            <summary>
+            Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.DefaultValue">
+            <summary>
+            Default Value
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.Encrypted">
+            <summary>
+            Encrypted
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.Description">
+            <summary>
+            Description
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.Tags">
+            <summary>
+            Tags
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.InternalEncrypted">
+            <summary>
+            Internal Encrypted
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.WebServices.Configuration.ACT_ConfigTemplate_Data.BaseRequired">
+            <summary>
+            Base Required
+            </summary>
+        </member>
+        <member name="T:ACT.Plugins.Web.IIS.ACT_IISHit">
+            <summary>
+            Implements the IISHIT Interface
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.HitDate">
+            <summary>
+            Date Of the IIS HIt
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.SiteName">
+            <summary>
+            SITE Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.ServerName">
+            <summary>
+            Server Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.ServerIP">
+            <summary>
+            Server IP Address
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.Method">
+            <summary>
+            Method
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.UriRoot">
+            <summary>
+            URI Root
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.Resource">
+            <summary>
+            Resource
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.UriQuery">
+            <summary>
+            URI Query
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.PortNumber">
+            <summary>
+            Port Number
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.UserName">
+            <summary>
+            UserName
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.ClientIPAddress">
+            <summary>
+            Client IP Address
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.CSVersion">
+            <summary>
+             CS Version
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.UserAgent">
+            <summary>
+            User Agent
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.Cookie">
+            <summary>
+            Cookie
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.Referrer">
+            <summary>
+            Referrer
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.HostHeaderName">
+            <summary>
+            Host Header Name
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.ScStatus">
+            <summary>
+            ScStatus
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.ScSubstatus">
+            <summary>
+            ScSubStatus
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.ScWin32Status">
+            <summary>
+            ScWin32Status
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.BytesSent">
+            <summary>
+            Bytes Sent
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.BytesReceived">
+            <summary>
+            Bytes received
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.TimeTaken">
+            <summary>
+             Time Taken
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.ParseError">
+            <summary>
+            Parse Error If Any
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.RawLine">
+            <summary>
+            Raw Hit Record
+            </summary>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISHit.ErrorMessage">
+            <summary>
+            ErrorMessage
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.Web.IIS.ACT_IISHit.FromString(System.String)">
+            <summary>
+            Static Class
+            </summary>
+            <param name="lineData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Plugins.Web.IIS.ACT_IISHit.ParseLine(System.String)">
+            <summary>
+            Parse the lineData and Populate the Class
+            </summary>
+            <param name="lineData"></param>
+        </member>
+        <member name="M:ACT.Plugins.Web.IIS.ACT_IISHit.#ctor(System.String)">
+            <summary>
+            Parse the Line Data
+            </summary>
+            <param name="rawline"></param>
+        </member>
+        <member name="T:ACT.Plugins.Web.IIS.ACT_IISLogRecord">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.Web.IIS.ACT_IISLogRecord.#ctor(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="FileName"></param>
+        </member>
+        <member name="P:ACT.Plugins.Web.IIS.ACT_IISLogRecord.HitData">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:ACT.Plugins.Web.IIS.ACT_IISLogRecord.SaveToDatabase(System.String,System.Guid,System.Guid)">
+            <summary>
+            Saves the Data to the Database
+            </summary>
+            <param name="connectionName"></param>
+            <param name="ACT_ApplicationID"></param>
+            <param name="ACT_DomainID"></param>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.ACTStrongEncryption.Encrypt(System.Byte[],System.String,System.Byte[],System.String)">
+            <summary>
+            Encrypts the Byte Array using 256 AES Encryption
+            </summary>
+            <param name="clearData">Byte Array of Clear Data</param>
+            <param name="Salt">Minimun 20 Character Salt</param>
+            <param name="IV">Init Vector - Null Uses Constructor Vector</param>
+            <param name="Password">File Password - If Blank Uses Internal</param>
+            <returns>Encrypted Byte Array</returns>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.ACTStrongEncryption.Decrypt(System.Byte[],System.String,System.Byte[],System.String)">
+            <summary>
+            Decrypts the Byte Array using 256 AES Encryption
+            </summary>
+            <param name="clearData">Byte Array of Clear Data</param>
+            <param name="Salt">Minimun 20 Character Salt</param>
+            <param name="IV">Init Vector - Null Uses Constructor Vector</param>
+            <param name="Password">File Password - If Blank Uses Internal</param>
+            <returns>DeCrypted Byte Array</returns>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.GenerateKey">
+            <summary>
+            Returns an encryption key to be used with the Rijndael algorithm
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.GenerateKey(System.String,System.String,ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.KeySize,System.Int32)">
+            <summary>
+            Returns an encryption key to be used with the Rijndael algorithm
+            </summary>
+            <param name="password">Password to create key with</param>
+            <param name="salt">Salt to create key with</param>
+            <param name="keySize">Can be 128, 192, or 256</param>
+            <param name="iterationCount">The number of iterations to derive the key. Default is 1000 iterations.</param>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.GenerateIV">
+            <summary>
+            Returns the encryption IV to be used with the Rijndael algorithm
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.Encrypt(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Encrypt a byte array into a byte array using the given Key and an IV
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.Encrypt(System.IO.Stream,System.String,System.Security.Cryptography.RijndaelManaged)">
+            <summary>
+            Encrypt a file into another file.
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.Encrypt(System.String,System.String,System.Byte[],System.Byte[])">
+            <summary>
+            Encrypt a file into another file
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.Encrypt(System.IO.Stream,System.String,System.Byte[],System.Byte[])">
+            <summary>
+            Encrypt a stream into a file
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.Encrypt(System.String,System.String,System.String@,System.String@)">
+            <summary>
+            Encrypt a file into another file.
+            The Key and an IV are automatically generated. These will be required when Decrypting the data.
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.Encrypt(System.IO.Stream,System.String,System.String@,System.String@)">
+            <summary>
+            Encrypt a stream into a file.
+            The Key and an IV are automatically generated. These will be required when Decrypting the data.
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.Decrypt(System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            Decrypt a byte array into a byte array using a Key and an IV
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.Decrypt(System.IO.Stream,System.IO.Stream,System.Security.Cryptography.RijndaelManaged)">
+            <summary>
+            Decrypt a file into another file
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.Decrypt(System.String,System.String,System.Byte[],System.Byte[])">
+            <summary>
+            Decrypt a file into another file
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.Decrypt(System.String,System.String,System.String,System.String)">
+            <summary>
+            Decrypt a file into another file using a Key and an IV
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.Decrypt(System.String,System.IO.Stream,System.String,System.String)">
+            <summary>
+            Decrypt a file into another file using a Key and an IV
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Digest.#ctor(System.String,System.String,ACT.Core.Plugins.Security.Encryption.Effortless.HashType)">
+            <summary>
+            Constructor where you can define all the properties.
+            </summary>
+            <param name="data">The data</param>
+            <param name="hash">The hash</param>
+            <param name="hashType">The HashType used to generate the hash.</param>
+        </member>
+        <member name="P:ACT.Core.Plugins.Security.Encryption.Effortless.Digest.Hash">
+            <summary>
+            Returns the pre-computed hash.
+            </summary>
+        </member>
+        <member name="P:ACT.Core.Plugins.Security.Encryption.Effortless.Digest.HashType">
+            <summary>
+            Returns the hash type used to generate the hash
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Digest.Create(ACT.Core.Plugins.Security.Encryption.Effortless.HashType,System.String,System.String)">
+            <summary>
+            Static function to create a Digest.
+            </summary>
+            <param name="hashType">HashType algorithm to be used to generate the hash</param>
+            <param name="data">The data</param>
+            <param name="sharedKey">The sharedKey is shared by the two parties who independently calculate the hash. The data is passed between parties
+            together with the hash. The hash will be identical if the data is unmodified. Use a sharedKey that is sufficiently
+            long and complex for the application - https://www.grc.com/passwords.htm - and share the sharedKey once over a secure
+            channel. See http://en.wikipedia.org/wiki/Cryptographic_hash_function for more information.</param>
+            <returns>A Digest class.</returns>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Digest.ToString">
+            <summary>
+            Returns a string in the following format: XXYYYH*D*
+            Where XX is the hashType, YYYY is the length of the hash, H* is the hash, and D* is the data. 
+            </summary>
+            <returns>A string representing the Digest.</returns>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Digest.CreateFromString(System.String,System.String)">
+            <summary>
+            This is the opposite of ToString(). It takes the data and re-creates the Digest.
+            </summary>
+            <param name="hashedData">The data obtained from ToString()</param>
+            <param name="sharedKey">The sharedKey is shared by the two parties who independently calculate the hash. The data is passed between parties
+            together with the hash. The hash will be identical if the data is unmodified. Use a sharedKey that is sufficiently
+            long and complex for the application - https://www.grc.com/passwords.htm - and share the sharedKey once over a secure
+            channel. See http://en.wikipedia.org/wiki/Cryptographic_hash_function for more information.</param>
+            <returns>Returns a Digest if succesfully verified, otherwise returns null</returns>
+        </member>
+        <member name="T:ACT.Core.Plugins.Security.Encryption.Effortless.HashType">
+            <summary>
+            The type of hashing function
+            </summary>
+        </member>
+        <member name="T:ACT.Core.Plugins.Security.Encryption.Effortless.Hash">
+            <summary>
+            A hash can help ensure authentication and integrity of data that may be
+            modified when transmitted between two parties. The sharedKey is shared by the two
+            parties who independently calculate the hash. The data is passed between parties
+            together with the hash. The hash will be identical if the data is unmodified.
+            Use a sharedKey that is sufficiently long and complex for the application -
+            https://www.grc.com/passwords.htm - and share the sharedKey once over a secure channel.
+            See http://en.wikipedia.org/wiki/Cryptographic_hash_function for more information.
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Hash.Create(ACT.Core.Plugins.Security.Encryption.Effortless.HashType,System.String,System.String,System.Boolean)">
+            <summary>
+            Creates a hash
+            </summary>
+            <param name="hashType">The type of hash algorithm to use</param>
+            <param name="data">The data to hash.</param>
+            <param name="sharedKey">The shared secret key.</param>
+            <param name="showBytes">If set to <c>true</c> will return data in hexadecimal format, i.e.
+            7A-C5-36-B4 without the dashes. If set to <c>false</c> will return data like xRA+Ei= etc.</param>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Strings.Encrypt(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            Encrypts a string. The clearString is converted into bytes, then Bytes.Encrypt() is called.
+            The resulting cipher data is returned after converting it to base-64.
+            </summary>
+            <param name="clearString">The plain text string.</param>
+            <param name="key">Key</param>
+            <param name="iv">IV</param>
+            <returns>The encrypted string.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception will be thrown when the original string is null.</exception>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Strings.Encrypt(System.String,System.String,System.String,System.String,ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.KeySize,System.Int32)">
+            <summary>
+            Encrypts a string. The password, salt and keySize are all used to generate a key see Bytes.GenerateKey().
+            The iv is converted into a byte array using Encoding.UTF8.GetBytes(iv).
+            The other Encrypt() function is then called using the clearString, keyBytes and ivBytes.
+            </summary>
+            <param name="clearString">The plain text string.</param>
+            <param name="password">Password to create key with</param>
+            <param name="salt">Salt to create key with</param>
+            <param name="iv">IV</param>
+            <param name="keySize">Can be 128, 192, or 256</param>
+            <param name="iterationCount">The number of iterations to derive the key. Default is 1000 iterations.</param>
+            <returns>The encrypted string.</returns>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Strings.Decrypt(System.String,System.Byte[],System.Byte[])">
+            <summary>
+            Decrypts a string.
+            </summary>
+            <param name="cipherString">The encrypted string.</param>
+            <param name="key">Key</param>
+            <param name="iv">IV</param>
+            <returns>The decrypted string.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception will be thrown when the crypted string is null.</exception>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Strings.Decrypt(System.String,System.String,System.String,System.String,ACT.Core.Plugins.Security.Encryption.Effortless.Bytes.KeySize,System.Int32)">
+            <summary>
+            Decrypts a string.
+            </summary>
+            <param name="cipherString">The encrypted string.</param>
+            <param name="password">Password to create key with</param>
+            <param name="salt">Salt to create key with</param>
+            <param name="iv">IV</param>
+            <param name="keySize">Can be 128, 192, or 256</param>
+            <param name="iterationCount">The number of iterations to derive the key. Default is 1000 iterations.</param>
+            <returns>The decrypted string.</returns>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Strings.CreateSaltFull(System.Int32)">
+            <summary>
+            Create a salt.
+            </summary>
+            <param name="numBytes">The numBytes is the number of non zero random bytes that will converted into a base-64 string. The resulting string length can be larger than numBytes.</param>
+            <returns>A salt</returns>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Strings.CreateSalt(System.Int32)">
+            <summary>
+            Create a salt of exactly the number of characters required.
+            Under the hood, it calls CreateSaltFull() and trims the string to the required length.
+            </summary>
+            <param name="numChars">The number of characters required in the salt</param>
+            <returns>A salt</returns>
+        </member>
+        <member name="M:ACT.Core.Plugins.Security.Encryption.Effortless.Strings.CreatePassword(System.Int32,System.Boolean)">
+            <summary>
+            Creates a password with the required length. You can specify if you want to allow punctuation characters in the retuned password.
+            For more information on punctuation characters, see http://msdn.microsoft.com/en-us/library/6w3ahtyy.aspx
+            </summary>
+            <param name="size">The number of characters in the returned password</param>
+            <param name="allowPunctuation">If true allows letters, digits and puctuation. If false only allows letters and digits.</param>
+            <returns>Password</returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.SimpleParse(System.String,System.Web.SessionState.HttpSessionState,System.Collections.Specialized.NameValueCollection)">
+             <summary> Allows Values To Be Parsed Using ACT Notation #VARIABLE#.  
+                       Session = SES- 
+                       Querystring = QES-  
+                       Example: "/login/default.aspx?LoginID=#SES-LoginID# 
+                         would be like "/login/default.aspx?LoginID=" + Session["LoginID"].ToString()
+             </summary>
+            
+             <value> The navigation URL. </value>
+        </member>
+        <member name="F:ACT.Core.Web.TemplateEngine.AllTemplateData">
+            <summary>
+            All The Template Data Loaded Into Memory
+            </summary>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.InitTemplateManagerDB(System.String,System.String,System.Boolean)">
+            <summary>
+            Init The Template Manager For Database Usage
+            </summary>
+            <param name="DBConnectionName"></param>
+            <param name="BaseDirectory"></param>
+            <param name="ForceReload"></param>
+            <param name="UserDefinedDB"></param>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.IsInstalled">
+            <summary>
+            Is Template Engine - Installed
+            </summary>
+            <returns>(bool,bool)</returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.UnInstall">
+            <summary>
+            Uninstall the ACT Web Template Features
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.Install">
+            <summary>
+            Install the ACT
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.UpdateDatabase(System.String,System.String)">
+            <summary>
+            Updates The Database With The Latest Version Of The Templates
+            </summary>
+            <param name="DBConnectionName"></param>
+            <param name="BaseDirectory"></param>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.GetTemplateDataDB(System.String,System.String,System.String,System.Int32)">
+            <summary>
+            Gets the template data from the Database Connection Name
+            </summary>
+            <param name="DBConnectionName"></param>
+            <param name="SubType"></param>
+            <param name="Name"></param>
+            <param name="Version"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.TestACTIntegration(System.String)">
+            <summary>
+            TESTS For ACT Integration Status
+            </summary>
+            <param name="ConnectionName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.DeployDatabase(System.String,System.Boolean)">
+            <summary>
+            Deploy the database and Stored Procedures
+            </summary>
+            <param name="ConnectionName"></param>
+            <param name="DropAndRecreate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.InitTemplateManager(System.String,System.String,System.Boolean)">
+            <summary>
+            This configures the template manager to be used with a website. 
+            </summary>
+            <param name="BaseDirectory">Physical Path To Template Directory</param>
+            <param name="TemplateType">Sub Directory Name Under Template Directory.</param>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.AddTemplateData(System.String,System.String)">
+            <summary>
+            LOCAL CACHE ONLY
+            </summary>
+            <param name="BaseDirectory"></param>
+            <param name="TemplateType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.ParseTemplate(ACT.Core.Web.Template,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Specialized.NameValueCollection,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            This processes a template executing replacement data
+            </summary>
+            <param name="TemplateClass">Template To Process</param>
+            <param name="DR">Current DataRow To Process</param>
+            <param name="QueryStringData">QueryString Data</param>
+            <param name="SessionData">Session Data</param>
+            <returns>Parsed Template</returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.ParseTemplate(ACT.Core.Web.Template,System.Data.DataRow,System.Data.DataColumnCollection,System.Collections.Specialized.NameValueCollection,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            A TEMPLATE REPLACEMENT CAN BE ONE OF THE FOLLOWING
+                #COLUMNNAME# - Direct Replacement For a Column Name in the DR Passed To IT
+                #PARSEFILE_FILENAME_(STOREDPROC|DATAROW)_PARAMA,PARAMB,PARAMC
+            </summary>
+            <param name="TemplateClass"></param>
+            <param name="DR"></param>
+            <param name="DC"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.ParseStoredProc(ACT.Core.Web.Template,System.String,System.String,System.String,System.Data.DataRow,System.Data.DataColumnCollection,System.Collections.Specialized.NameValueCollection,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Parses The Stored Proc 
+            </summary>
+            <param name="_ReplacementName"></param>
+            <param name="BaseDirectory"></param>
+            <param name="TemplateType"></param>
+            <param name="DR"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.ProcessReplacementLogic(ACT.Core.Web.Template,System.String,System.String@,System.Data.DataRow,System.Data.DataColumnCollection,System.Collections.Specialized.NameValueCollection,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Process Replacement LOGIC
+            </summary>
+            <param name="TemplateClass">Template Class Being Replaced</param>
+            <param name="ReplacementName">Replacment Name WITHOUT POOUNDS ###SOMEDATA### = SOMEDATA</param>
+            <param name="TemplateStringData">REF TO CURRENT OUTPUT DATA</param>
+            <param name="DR">DATA ROW</param>
+            <param name="QueryStringData">QUERYSTRING DATA</param>
+            <param name="SessionData">SESSION DATA</param>
+            <returns></returns>
+        </member>
+        <member name="M:ACT.Core.Web.TemplateEngine.ProcessIFStatement(System.Int32,System.String,System.String@,System.Data.DataRow,System.Data.DataColumnCollection,ACT.Core.Web.Template,System.Collections.Specialized.NameValueCollection,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            PROCESS A DETECTED IF STATEMENT
+            </summary>
+            <param name="StartIndex">Starting Index Relative to TemplateStringData and Current IF Position</param>
+            <param name="ReplacementName">REPLACEMENT NAME (ONLY THINGS INBETWEEN ###IF xxxxx ### = xxxxx</param>
+            <param name="TemplateStringData">Current Template Data (Pass as Ref)</param>
+            <param name="DR">Current Data Row</param>
+            <returns>New Index Position</returns>
+        </member>
+    </members>
+</doc>

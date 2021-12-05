@@ -1,0 +1,128 @@
+﻿namespace IVolt.Kinguin.API.Security
+{
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Security.Cryptography;
+
+    /// <summary>
+    /// Defines the <see cref="FileSecurity" />.
+    /// </summary>
+    public static class FileSecurity
+    {
+        /// <summary>
+        /// Defines the _Oragami.
+        /// </summary>
+        private static byte[] _Oragami = new byte[] { 44, 55, 66, 77, 88, 99, 1, 2, 3, 4, 5 };
+        System.Text.Encoding.Default.GetString(ProtectedData.Unprotect(GetFile(Enums.Protected_Files.API_Configuration), _Oragami, DataProtectionScope.CurrentUser))
+        /// <summary>
+        /// Defines the _FileA.
+        /// </summary>
+        private static string _FileA = Globals.DataDirectory + "API_Configuration.json";
+
+        /// <summary>
+        /// Defines the _FileB.
+        /// </summary>
+        private static string _FileB = Globals.DataDirectory + "Storage_Settings.json";
+
+        /// <summary>
+        /// Defines the _FileA_P.
+        /// </summary>
+        private static string _FileA_P = Globals.DataDirectory + "API_Configuration.acte";
+
+        /// <summary>
+        /// Defines the _FileB_P.
+        /// </summary>
+        private static string _FileB_P = Globals.DataDirectory + "Storage_Settings.acte";
+
+        /// <summary>
+        /// The ProtectFiles.
+        /// </summary>
+        public static void ProtectFiles()
+        {
+            if (File.Exists(_FileA))
+            {
+                if (File.Exists(_FileA_P)) { File.Delete(_FileA_P); }
+                byte[] _FileAData = ProtectedData.Protect(File.ReadAllBytes(_FileA), _Oragami, System.Security.Cryptography.DataProtectionScope.CurrentUser);
+                System.IO.File.WriteAllBytes(_FileA_P, _FileAData);
+            }
+
+            if (File.Exists(_FileB))
+            {
+                if (File.Exists(_FileB_P)) { File.Delete(_FileB_P); }
+                byte[] _FileBData = ProtectedData.Protect(File.ReadAllBytes(_FileB), _Oragami, System.Security.Cryptography.DataProtectionScope.CurrentUser);
+                System.IO.File.WriteAllBytes(_FileB_P, _FileBData);
+            }
+        }
+
+        /// <summary>
+        /// The GetFile.
+        /// </summary>
+        /// <param name="ProtectedFile">The ProtectedFile<see cref="Enums.Protected_Files"/>.</param>
+        /// <returns>The <see cref="byte[]"/>.</returns>
+        public static byte[] GetFile(Enums.Protected_Files ProtectedFile)
+        {
+            if (ProtectedFile == Enums.Protected_Files.API_Configuration)
+            {
+                if (File.Exists(_FileA_P) == false) { throw new FileNotFoundException(_FileA_P + " Was Not Found."); }
+                return File.ReadAllBytes(_FileA_P);
+            }
+
+            if (ProtectedFile == Enums.Protected_Files.Storage_Settings)
+            {
+                if (File.Exists(_FileB_P) == false) { throw new FileNotFoundException(_FileB_P + " Was Not Found."); }
+                return File.ReadAllBytes(_FileB_P);
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// The UnProtect_ToMemory.
+        /// </summary>
+        /// <param name="ProtectedFile">The ProtectedFile<see cref="Enums.Protected_Files"/>.</param>
+        /// <returns>The <see cref="Dictionary{Enums.Protected_Files, string}"/>.</returns>
+        public static Dictionary<Enums.Protected_Files, string> UnProtect_ToMemory(Enums.Protected_Files ProtectedFile)
+        {
+            Dictionary<Enums.Protected_Files, string> _tmpReturn = new Dictionary<Enums.Protected_Files, string>();
+
+            if (ProtectedFile == Enums.Protected_Files.ALL)
+            {
+                _tmpReturn.Add(Enums.Protected_Files.API_Configuration, System.Text.Encoding.Default.GetString(ProtectedData.Unprotect(GetFile(Enums.Protected_Files.API_Configuration), _Oragami, DataProtectionScope.CurrentUser)));
+                _tmpReturn.Add(Enums.Protected_Files.Storage_Settings, System.Text.Encoding.Default.GetString(ProtectedData.Unprotect(GetFile(Enums.Protected_Files.Storage_Settings), _Oragami, DataProtectionScope.CurrentUser)));
+            }
+            else if (ProtectedFile == Enums.Protected_Files.API_Configuration)
+            {
+                _tmpReturn.Add(Enums.Protected_Files.API_Configuration, System.Text.Encoding.Default.GetString(ProtectedData.Unprotect(GetFile(Enums.Protected_Files.API_Configuration), _Oragami, DataProtectionScope.CurrentUser)));
+            }
+            else if (ProtectedFile == Enums.Protected_Files.Storage_Settings)
+            {
+                _tmpReturn.Add(Enums.Protected_Files.Storage_Settings, System.Text.Encoding.Default.GetString(ProtectedData.Unprotect(GetFile(Enums.Protected_Files.Storage_Settings), _Oragami, DataProtectionScope.CurrentUser)));
+            }
+
+            return _tmpReturn;
+        }
+
+        /// <summary>
+        /// The UnProtect_ToDirectory.
+        /// </summary>
+        /// <param name="ProtectedFile">The ProtectedFile<see cref="Enums.Protected_Files"/>.</param>
+        /// <param name="PathTo">The PathTo<see cref="string"/>.</param>
+        public static void UnProtect_ToDirectory(Enums.Protected_Files ProtectedFile, string PathTo)
+        {
+            if (PathTo.EndsWith("\\") == false) { PathTo = PathTo + "\\"; }
+            if (Directory.Exists(PathTo) == false) { Directory.CreateDirectory(PathTo); }
+
+            if (ProtectedFile == Enums.Protected_Files.ALL)
+            {
+                UnProtect_ToDirectory(Enums.Protected_Files.API_Configuration, PathTo);
+                UnProtect_ToDirectory(Enums.Protected_Files.Storage_Settings, PathTo);
+            }
+            else
+            {
+                var _tmpData = GetFile(ProtectedFile);
+                var _Data = System.Text.Encoding.Default.GetString(ProtectedData.Unprotect(_tmpData, _Oragami, DataProtectionScope.CurrentUser));
+                File.WriteAllText(PathTo + ProtectedFile.ToString() + ".json", _Data);
+            }
+        }
+    }
+}
