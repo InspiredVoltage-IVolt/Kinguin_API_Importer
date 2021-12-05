@@ -215,6 +215,12 @@
         [JsonProperty("updatedAt", NullValueHandling = NullValueHandling.Ignore)]
         public DateTime? UpdatedAt { get; set; }
 
+        [JsonIgnore()]
+        public Guid ImportID { get; set; }
+
+        [JsonIgnore()]
+        public int ImportCount { get; set; }
+
         /// <summary>
         /// The FromJson.
         /// </summary>

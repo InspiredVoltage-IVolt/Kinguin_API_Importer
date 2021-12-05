@@ -5,9 +5,9 @@ namespace IVolt.Kinguin.API.Local
 {
 
     /// <summary>
-    /// Defines the <see cref="Import_Json_Files_Into_Database" />.
+    /// Defines the <see cref="JSON_File_Importer" />.
     /// </summary>
-    public static partial class Import_Json_Files_Into_Database
+    public static partial class JSON_File_Importer
     {
         /// <summary>
         /// Renames and moves JSON Files

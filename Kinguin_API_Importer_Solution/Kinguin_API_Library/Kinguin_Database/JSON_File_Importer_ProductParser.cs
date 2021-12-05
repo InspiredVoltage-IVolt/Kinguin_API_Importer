@@ -1,187 +1,204 @@
 ﻿using ACT.Core.Extensions;
 using IVolt.Kinguin.API.DB;
-using IVolt.Kinguin.API.Enums;
-using IVolt.Kinguin.API.LocalDB;
 using IVolt.Kinguin.API.Objects;
-using IVolt.Kinguin.API.Security;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Genres = IVolt.Kinguin.API.LocalDB.Genres;
-using Tags = IVolt.Kinguin.API.LocalDB.Tags;
 
 namespace IVolt.Kinguin.API.Local
 {
 
     /// <summary>
-    /// Defines the <see cref="Import_Json_Files_Into_Database" />.
+    /// Defines the <see cref="JSON_File_Importer" />.
     /// </summary>
-    public static partial class Import_Json_Files_Into_Database
+    public static partial class JSON_File_Importer
     {
+
         /// <summary>
         /// Loads Data using Parallel Threading
+        /// KinguinProductRefs, AllMetaData and _AllOffers, Variables
         /// </summary>
-        /// <param name="ImportFiles"></param>
+        /// <param name="ImportFiles">List of JSON Files to Import</param>
         internal static void QuickLoadData(List<string> ImportFiles)
         {
+            if (_ImportedFiles.Count == 0)
+            {
+                // Load All Files That Are In the Import Log
+                var _ImportLogData = LocalDB.GET.ALL.IMPORTLOG.ENTRIES.Execute.Proc().FirstDataTable_WithRows();
+                if (_ImportLogData != null)
+                {
+                    foreach (System.Data.DataRow dr in _ImportLogData.Rows)
+                    {
+                        DateTime? _DateUpdated = (DateTime?)dr["DateModified"];
+                        if (_DateUpdated != null)
+                        {
+                            _ImportedFiles.Add(dr["JSON_FileName"].ToString(), _DateUpdated.Value);
+                        }
+                    }
+                }
+            }
+
             _AllMetaData.Clear();
 
             Parallel.ForEach(ImportFiles, FileName =>
             {
-                var P = Kinguin_Product.FromJson(FileName.ReadAllText());
-                P.JSONFileName = FileName;
-                KinguinProductRefs.Add(P);
+                var _LoadedKinguinProduct = Kinguin_Product.FromJson(FileName.ReadAllText());
 
-                if (P.Publishers != null)
+                if (_ImportedFiles.ContainsKey(FileName))
                 {
-                    foreach (var Pub in P.Publishers)
+                    if (_LoadedKinguinProduct.UpdatedAt != null)
+                    {
+                        if (_ImportedFiles[FileName].ToDateTime() == _LoadedKinguinProduct.UpdatedAt.Value)
+                        {
+                            return;
+                        }
+                    }
+                }
+
+                _LoadedKinguinProduct.JSONFileName = FileName;
+
+                KinguinProductRefs.Add(_LoadedKinguinProduct);
+
+                if (_LoadedKinguinProduct.Publishers != null)
+                {
+                    foreach (var Pub in _LoadedKinguinProduct.Publishers)
                     {
                         _AllMetaData.Add(new DatabaseMetaData_Struct()
                         {
                             TableName = "Publishers",
                             V1 = Pub,
-                            KProductID = P.ProductId,
+                            KProductID = _LoadedKinguinProduct.ProductId,
                             FilePath = FileName
                         });
                     }
                 }
 
-                if (P.Developers != null)
+                if (_LoadedKinguinProduct.Developers != null)
                 {
-                    foreach (var Dev in P.Developers)
+                    foreach (var Dev in _LoadedKinguinProduct.Developers)
                     {
                         _AllMetaData.Add(new DatabaseMetaData_Struct()
                         {
                             TableName = "Developers",
                             V1 = Dev,
-                            KProductID = P.ProductId,
-                            FilePath = FileName           
+                            KProductID = _LoadedKinguinProduct.ProductId,
+                            FilePath = FileName
                         });
                     }
                 }
 
-                if (P.Genres != null)
+                if (_LoadedKinguinProduct.Genres != null)
                 {
-                    foreach (var Gen in P.Genres)
+                    foreach (var Gen in _LoadedKinguinProduct.Genres)
                     {
                         _AllMetaData.Add(new DatabaseMetaData_Struct()
                         {
                             TableName = "Genres",
                             V1 = Gen,
-                            KProductID = P.ProductId,
+                            KProductID = _LoadedKinguinProduct.ProductId,
                             FilePath = FileName
                         });
                     }
                 }
 
-                if (P.Languages != null)
+                if (_LoadedKinguinProduct.Languages != null)
                 {
-                    foreach (var Lan in P.Languages)
+                    foreach (var Lan in _LoadedKinguinProduct.Languages)
                     {
                         _AllMetaData.Add(new DatabaseMetaData_Struct()
                         {
                             TableName = "Languages",
                             V1 = Lan,
-                            KProductID = P.ProductId,
+                            KProductID = _LoadedKinguinProduct.ProductId,
                             FilePath = FileName
                         });
                     }
                 }
 
-                if (P.Tags != null)
+                if (_LoadedKinguinProduct.Tags != null)
                 {
-                    foreach (var Tag in P.Tags)
+                    foreach (var Tag in _LoadedKinguinProduct.Tags)
                     {
                         _AllMetaData.Add(new DatabaseMetaData_Struct()
                         {
                             TableName = "Tags",
                             V1 = Tag,
-                            KProductID = P.ProductId,
+                            KProductID = _LoadedKinguinProduct.ProductId,
                             FilePath = FileName
                         });
                     }
                 }
 
-                if (P.MerchantName != null)
+                if (_LoadedKinguinProduct.MerchantName != null)
                 {
-                    foreach (var Mer in P.MerchantName)
+                    foreach (var Mer in _LoadedKinguinProduct.MerchantName)
                     {
                         _AllMetaData.Add(new DatabaseMetaData_Struct()
                         {
                             TableName = "MerchantName",
                             V1 = Mer,
-                            KProductID = P.ProductId,
+                            KProductID = _LoadedKinguinProduct.ProductId,
                             FilePath = FileName
                         });
                     }
                 }
 
-                if (P.CheapestOfferId != null)
+                if (_LoadedKinguinProduct.CheapestOfferId != null)
                 {
-                    foreach (var Off in P.CheapestOfferId)
+                    foreach (var Off in _LoadedKinguinProduct.CheapestOfferId)
                     {
                         _AllMetaData.Add(new DatabaseMetaData_Struct()
                         {
                             TableName = "CheapestOfferId",
                             V1 = Off,
-                            V2 = P.ProductId,
-                            KProductID = P.ProductId,
+                            V2 = _LoadedKinguinProduct.ProductId,
+                            KProductID = _LoadedKinguinProduct.ProductId,
                             FilePath = FileName
                         });
                     }
                 }
 
-                if (P.Screenshots != null)
+                if (_LoadedKinguinProduct.Screenshots != null)
                 {
-                    foreach (var Sh in P.Screenshots)
+                    foreach (var Sh in _LoadedKinguinProduct.Screenshots)
                     {
                         _AllMetaData.Add(new DatabaseMetaData_Struct()
                         {
                             TableName = "Screenshots",
                             V1 = Sh.Url,
                             V2 = Sh.UrlOriginal,
-                            KProductID = P.ProductId,
+                            KProductID = _LoadedKinguinProduct.ProductId,
                             FilePath = FileName
                         });
                     }
                 }
 
-                if (P.Videos != null)
+                if (_LoadedKinguinProduct.Videos != null)
                 {
-                    foreach (var Vid in P.Videos)
-                    {                       
+                    foreach (var Vid in _LoadedKinguinProduct.Videos)
+                    {
                         _AllMetaData.Add(new DatabaseMetaData_Struct()
                         {
                             TableName = "Videos",
                             V1 = Vid.ID,
                             V2 = Vid.Name,
-                            KProductID = P.ProductId,
+                            KProductID = _LoadedKinguinProduct.ProductId,
                             FilePath = FileName
                         });
                     }
                 }
 
-                if (P.SystemRequirements != null)
+                if (_LoadedKinguinProduct.SystemRequirements != null)
                 {
-                    foreach (var ReqS in P.SystemRequirements)
+                    foreach (var ReqS in _LoadedKinguinProduct.SystemRequirements)
                     {
                         if (ReqS.System != null)
+                        {
                             _AllMetaData.Add(new DatabaseMetaData_Struct()
                             {
                                 TableName = "Systems",
                                 V1 = ReqS.System,
-                                KProductID = P.ProductId,
+                                KProductID = _LoadedKinguinProduct.ProductId,
                                 FilePath = FileName
                             });
-
+                        }
 
                         foreach (var Req in ReqS.Requirements)
                         {
@@ -190,32 +207,31 @@ namespace IVolt.Kinguin.API.Local
                                 TableName = "Requirements",
                                 V1 = Req,
                                 V2 = ReqS.System,
-                                KProductID = P.ProductId,
+                                KProductID = _LoadedKinguinProduct.ProductId,
                                 FilePath = FileName
                             });
                         }
                     }
                 }
 
-                if (P.Offers != null)
+                if (_LoadedKinguinProduct.Offers != null)
                 {
-                    // Only Merchant Name
-                    foreach (var Offer in P.Offers)
+                    // Only MerchantName and OfferID
+                    foreach (var Offer in _LoadedKinguinProduct.Offers)
                     {
                         _AllMetaData.Add(new DatabaseMetaData_Struct()
                         {
                             TableName = "Offers",
                             V1 = Offer.MerchantName,
                             V2 = Offer.ID,
-                            KProductID = P.ProductId,
+                            KProductID = _LoadedKinguinProduct.ProductId,
                             FilePath = FileName
                         });
                         _AllOffers.Add(Offer);
                     }
-                }                
+                }
             });
 
-            LoadImages();
         }
     }
 }

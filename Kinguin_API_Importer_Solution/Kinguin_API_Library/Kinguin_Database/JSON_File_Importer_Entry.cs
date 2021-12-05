@@ -1,30 +1,18 @@
 ﻿using ACT.Core.Extensions;
 using IVolt.Kinguin.API.DB;
-using IVolt.Kinguin.API.Enums;
 using IVolt.Kinguin.API.LocalDB;
 using IVolt.Kinguin.API.Objects;
 using IVolt.Kinguin.API.Security;
-using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Drawing.Imaging;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
-using Genres = IVolt.Kinguin.API.LocalDB.Genres;
-using Tags = IVolt.Kinguin.API.LocalDB.Tags;
 
 namespace IVolt.Kinguin.API.Local
 {
 
     /// <summary>
-    /// Defines the <see cref="Import_Json_Files_Into_Database" />.
+    /// Defines the <see cref="JSON_File_Importer" />.
     /// </summary>
-    public static partial class Import_Json_Files_Into_Database
+    public static partial class JSON_File_Importer
     {
 
         #region Variables / Fields
@@ -45,6 +33,7 @@ namespace IVolt.Kinguin.API.Local
 
         private static List<int> ProductsInserted = new List<int>();
         private static List<string> ProductsNotInserted = new List<String>();
+        private static Dictionary<string, DateTime> _ImportedFiles = new Dictionary<string, DateTime>();
 
 
         #endregion
@@ -58,9 +47,16 @@ namespace IVolt.Kinguin.API.Local
             ACT.Core.SystemSettings.LoadSystemSettings();
             var _Files = System.IO.Directory.GetFiles(FileSecurity.KinguinLocalDownloadFolder_Protected, "*.json", SearchOption.AllDirectories).ToList();
 
+
+            _ImportedFiles.Clear();
+            _AllMetaData.Clear();
+            _AllOffers.Clear();
+            KinguinProductRefs.Clear();
+            ErrorLog.Clear();
+
             // IMPORT META DATA and OFFERS
             ImportCollectedMetaData(_Files);
-            
+
             // Download and Save All Images To Database
             DownloadAllImages();
         }
@@ -77,11 +73,12 @@ namespace IVolt.Kinguin.API.Local
 
                 if (ImportFiles.Count - x < 500) { SelectionCount = ImportFiles.Count - x; }
 
-                Console.WriteLine(x.ToString() + "to" + SelectionCount.ToString());
+                Console.WriteLine(x.ToString() + "to" + (x + 500).ToString() + " out of " + ImportFiles.Count.ToString());
 
+                // Loads KinguinProductRefs, _AllOffers, and AllMetaData
                 QuickLoadData(ImportFiles.GetRange(x, SelectionCount));
 
-                #region Add / INSERT ALL META DATA INTO DATABASE
+                #region Add / INSERT ALL META DATA INTO DATABASE (_AllMetaData)
                 List<DatabaseMetaData_Struct> _t = new List<DatabaseMetaData_Struct>();
                 _t.AddRange(_AllMetaData);
                 using (var bcp = new SqlBulkCopy(FileSecurity.KinguinDatabase_ConnectionString_Protected))
@@ -97,7 +94,7 @@ namespace IVolt.Kinguin.API.Local
                 _t.Clear();
                 #endregion
 
-                #region Add / INSERT ALL INTO DATABASE
+                #region Add / INSERT ALL OFFERS INTO DATABASE (_AllOfferS)
                 using (var bcp1 = new SqlBulkCopy(FileSecurity.KinguinDatabase_ConnectionString_Protected))
                 using (var reader1 = FastMember.ObjectReader.Create(_AllOffers))
                 {
@@ -117,9 +114,10 @@ namespace IVolt.Kinguin.API.Local
 
                 #endregion
 
+                /// Save Prodycts To Database (KinguinProductRefs)
+                SaveProductsToDatabase();
 
-
-                LoadAllProducts();
+                /// Save Import Log
 
                 KinguinProductRefs.Clear();
                 _AllOffers.Clear();
@@ -134,7 +132,7 @@ namespace IVolt.Kinguin.API.Local
                 Console.WriteLine("FINISHED IMPORT META DATA SECTION");
                 Console.WriteLine("-----------------");
 
-               // IVolt.Kinguin.API.LocalDB.PROC.PRODUCT.CREATE.RELATIONSHIPS.Execute.Proc();
+                // IVolt.Kinguin.API.LocalDB.PROC.PRODUCT.CREATE.RELATIONSHIPS.Execute.Proc();
 
             }
 
@@ -147,56 +145,80 @@ namespace IVolt.Kinguin.API.Local
             ProductsNotInserted.Clear();
         }
 
-
+        /// <summary>
+        /// Saves the Import Log Data
+        /// </summary>
+        private static void SaveImportLog()
+        {
+            using (var bcp = new SqlBulkCopy(FileSecurity.KinguinDatabase_ConnectionString_Protected))
+            using (var reader = FastMember.ObjectReader.Create(KinguinProductRefs))
+            {
+                bcp.ColumnMappings.Add("ImportID", "ImportID");
+                bcp.ColumnMappings.Add("JSONFileName", "JSONFileName");
+                bcp.ColumnMappings.Add("DateModified", "UpdatedAt");
+                bcp.DestinationTableName = "Import_Log";
+                bcp.WriteToServer(reader);
+            }
+        }
 
         /// <summary>
         /// Save current Global Variable KinguinProductRefs to the Database
+        /// Uses the Setting KinguinDatabase_ConnectionString in ConfigurationSettings.xml
         /// </summary>
-        private static void LoadAllProducts()
+        private static Guid SaveProductsToDatabase()
         {
-            foreach (var P in KinguinProductRefs)
+            #region Add / INSERT ALL META DATA INTO DATABASE
+            var _t = KinguinProductRefs.ToList();
+
+            Guid _ImportID = Guid.NewGuid();
+
+            foreach (var P in _t)
             {
                 if (P.ReleaseDate < new DateTime(1920, 1, 1)) { P.ReleaseDate = null; }
+                P.ImportID = _ImportID;
+                if (P.UpdatedAt == null || P.ReleaseDate < new DateTime(1920, 1, 1)) { P.UpdatedAt = DateTime.Now; }
+            }
 
-                var _ProductIDResultA = LocalDB.PROC.PRODUCT.ADD.Execute.Proc(P.Name, P.JSONFileName, P.Description,
-                    P.CoverImage, P.CoverImageOriginal,
-                    P.Platform, P.ReleaseDate, (int?)P.Qty,
-                    (int?)P.TextQty, (decimal)P.Price,
-                    P.IsPreorder, (int?)P.MetacriticScore,
-                    P.RegionalLimitations,
-                    (int?)P.RegionId, P.ActivationDetails,
-                    (int?)P.KinguinId, P.ProductId, P.OriginalName,
-                    (int?)P.OffersCount, (int?)P.TotalQty,
-                    P.UpdatedAt);
+            using (var bcp = new SqlBulkCopy(FileSecurity.KinguinDatabase_ConnectionString_Protected))
+            using (var reader = FastMember.ObjectReader.Create(_t))
+            {
+                bcp.ColumnMappings.Add("Name", "Name");
+                bcp.ColumnMappings.Add("JSONFileName", "JSONFileName");
+                bcp.ColumnMappings.Add("Description", "Description");
+                bcp.ColumnMappings.Add("CoverImage", "CoverImage");
+                bcp.ColumnMappings.Add("CoverImageOriginal", "CoverImageOriginal");
+                bcp.ColumnMappings.Add("Platform", "Platform");
+                bcp.ColumnMappings.Add("Qty", "Qty");
+                bcp.ColumnMappings.Add("TextQty", "TextQty");
+                bcp.ColumnMappings.Add("Price", "Price");
+                bcp.ColumnMappings.Add("IsPreorder", "IsPreorder");
+                bcp.ColumnMappings.Add("MetacriticScore", "MetacriticScore");
+                bcp.ColumnMappings.Add("RegionalLimitations", "RegionalLimitations");
+                bcp.ColumnMappings.Add("RegionId", "RegionId");
+                bcp.ColumnMappings.Add("ActivationDetails", "ActivationDetails");
+                bcp.ColumnMappings.Add("KinguinId", "KinguinId");
+                bcp.ColumnMappings.Add("ProductId", "ProductId");
+                bcp.ColumnMappings.Add("OriginalName", "OriginalName");
+                bcp.ColumnMappings.Add("OffersCount", "OffersCount");
+                bcp.ColumnMappings.Add("TotalQty", "TotalQty");
+                bcp.ColumnMappings.Add("UpdatedAt", "UpdatedAt");
+                bcp.ColumnMappings.Add("ImportID", "ImportID");
+                bcp.DestinationTableName = "KinguinProduct";
+                bcp.WriteToServer(reader);
+            }
+            _t.Clear();
 
-                var _ProductIDResult = _ProductIDResultA.FirstDataTable_WithRows();
-
-                if (_ProductIDResult == null)
-                {
-                    ProductsNotInserted.Add(P.JSONFileName);
-                    ErrorLog.Add("Critical Error: Unable To Add Product! ProductID: " + P.ProductId + ": KinguinProductId: " + P.KinguinId.ToString() + ":" + P.JSONFileName);
-                    continue;
-                }
-
-                int _ProductID = _ProductIDResult.Rows[0]["ID"].ToInt(-1);
-
-                if (_ProductID == -1)
-                {
-                    ProductsNotInserted.Add(P.JSONFileName);
-                    ErrorLog.Add("Critical Error: Unable To Add Product! ProductID: " + P.ProductId + ": KinguinProductId: " + P.KinguinId.ToString() + ":" + P.JSONFileName);
-                    return;
-                }
-
-                ProductsInserted.Add(_ProductID);
-            }           
+            return _ImportID;
+            #endregion
         }
+
 
         /// <summary>
         /// Gets the Kinguin Intermediate Database Product ID Based On the KinguinProductID
         /// </summary>
         /// <param name="KinguinProductId"></param>
         /// <returns></returns>
-       public static int GetProductByKinguinProductId(string KinguinProductId)
+        public static int GetProductByKinguinProductId(string KinguinProductId)
         {
             using (var TestForExistingProduct = LocalDB.PROC.PRODUCTS.SEARCH.BY.KINGUINID.Execute
                                                        .Proc(KinguinProductId).FirstDataTable_WithRows())

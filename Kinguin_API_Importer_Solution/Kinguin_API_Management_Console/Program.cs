@@ -122,7 +122,7 @@ namespace IVolt.Kinguin.ManagementConsole
                     Console.WriteLine("===========================");
                     Console.WriteLine("Starting The Main Process");
                     Console.WriteLine("===========================");
-                    IVolt.Kinguin.API.Local.Import_Json_Files_Into_Database.Process();
+                    IVolt.Kinguin.API.Local.JSON_File_Importer.Process();
                     Console.WriteLine("===========================");
                     Console.WriteLine("Completed The Main Process");
                     Console.WriteLine("===========================");
@@ -142,7 +142,7 @@ namespace IVolt.Kinguin.ManagementConsole
                     if (_Source.DirectoryExists() == false) { goto five; }
                     if (_Dest.DirectoryExists() == false) { goto five; }
 
-                    IVolt.Kinguin.API.Local.Import_Json_Files_Into_Database.ReverseCleanupProcessedFile(_Source, _Dest);
+                    IVolt.Kinguin.API.Local.JSON_File_Importer.ReverseCleanupProcessedFile(_Source, _Dest);
                     break;
                 case 6:
                     break;
@@ -200,7 +200,7 @@ namespace IVolt.Kinguin.ManagementConsole
                     // TODO
                     break;
                 case 3:
-                    IVolt.Kinguin.API.Local.Import_Json_Files_Into_Database.Process();
+                    IVolt.Kinguin.API.Local.JSON_File_Importer.Process();
                     break;
                 case 4:
                     return;
