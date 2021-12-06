@@ -1,7 +1,6 @@
 ﻿namespace IVolt.Kinguin.API.Objects
 {
     using Newtonsoft.Json;
-    using System;
 
     /// <summary>
     /// Defines the <see cref="Kinguin_Product_Offer" />.
@@ -55,13 +54,13 @@
         /// Gets or sets the ReleaseDate.
         /// </summary>
         [JsonProperty("releaseDate", NullValueHandling = NullValueHandling.Ignore)]
-        public string? ReleaseDate { get; set; }
+        public string ReleaseDate { get; set; }
 
         /// <summary>
         /// Gets or sets the KinguinProductID.
         /// </summary>
         [JsonIgnore()]
-        public string? KProductID { get; set; }
+        public string KProductID { get; set; }
 
         /// <summary>
         /// Gets or sets the KinguinProductID.

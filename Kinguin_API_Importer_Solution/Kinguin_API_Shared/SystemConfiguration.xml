@@ -9,8 +9,8 @@
 	<Setting name="kinguinnewdownloadfolderformat"><![CDATA[###MONTH###-###DAY###-###YEAR###]]></Setting>
 	<Setting name="kinguinProcessedFilesfolder"><![CDATA[###SOURCEFOLDER###]]></Setting>
 	<Setting name="kinguinapikey"><![CDATA[dc9393a20a632734f15b73397d550692]]></Setting>
-	<Setting name="Kinguin_connectionstring"><![CDATA[Data Source=ns-sql-01;Initial Catalog=Kinguin_DB;User ID=root;Password=K@iserB3lla!MS]]></Setting>
-	<Setting name="NopComm_connectionstring"><![CDATA[Data Source=ns-sql-01;Initial Catalog=Marks_Store;User ID=root;Password=K@iserB3lla!MS]]></Setting>
+	<Setting name="Kinguin_connectionstring"><![CDATA[Data Source=ns-sql-01;Initial Catalog=Kinguin_DB;User ID=root;Password=]]></Setting>
+	<Setting name="NopComm_connectionstring"><![CDATA[Data Source=ns-sql-01;Initial Catalog=Marks_Store;User ID=root;Password=]]></Setting>
 
 	<Setting name="ACTInstallationDirectory"><![CDATA[D:\Program Files (x86)\ACT\]]></Setting>
 	<!-- Defines If More Detailed Logging Occurs -->
@@ -24,7 +24,7 @@
 	<!-- Default Connection String Used For All Blank Connection Open Statements-->
 	<Setting name="DefaultConnectionString" value=""/>
 	<!-- Connection String For ACT_CORE -->
-	<Setting name="ACT_Core_Connectionstring"><![CDATA[Data Source=ns-sql-01;Initial Catalog=ACT_CORE;User ID=root;Password=K@iserB3lla!MS]]></Setting>
+	<Setting name="ACT_Core_Connectionstring"><![CDATA[Data Source=ns-sql-01;Initial Catalog=ACT_CORE;User ID=root;Password=]]></Setting>
 
 
 	<!-- Connection String For MediNav -->

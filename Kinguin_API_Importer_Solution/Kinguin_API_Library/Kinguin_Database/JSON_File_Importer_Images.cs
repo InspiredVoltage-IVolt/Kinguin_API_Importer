@@ -67,21 +67,35 @@ namespace IVolt.Kinguin.API.Local
 
         public static void DownloadAllImages()
         {
+            Console.WriteLine("Starting Image Download..");
+
             var _ImagesToDownload = LocalDB.PROC.IMAGES.GET.IAMGES.TO.DOWNLOAD.Execute.Proc();
             var _Rows = _ImagesToDownload.FirstDataTable_WithRows();
 
-            if (_Rows == null) { return; }
+            if (_Rows == null)
+            {
+                Console.WriteLine("No Images To Download Found..");
+                return;
+            }
+
+            Console.WriteLine("Found " + _Rows.Rows.Count.ToString() + " Images To Download");
 
             ConcurrentDictionary<int, string> ImageIDAndURLConcurrent = new ConcurrentDictionary<int, string>();
             ConcurrentDictionary<int, byte[]> ImageByteData = new ConcurrentDictionary<int, byte[]>();
 
+            int _HiddenCount = 0;
             int _Count = 0;
             foreach (System.Data.DataRow Dr in _Rows.Rows)
             {
+                _HiddenCount = _HiddenCount + 1;
+
+                if (Dr["url"].ToString().NullOrEmpty()) { continue; }
+
                 ImageIDAndURLConcurrent.AddOrUpdate(Dr["ID"].ToInt(-1), Dr["url"].ToString(), (id, text) => Dr["url"].ToString());
 
-                if (_Count == 300)
+                if (_Count == 300 || _HiddenCount == _Rows.Rows.Count)
                 {
+                    Console.WriteLine("Downloading " + _Count.ToString() + " Images.  Total Downloaded: " + _HiddenCount.ToString());
                     _Count = 0;
                     Parallel.ForEach(ImageIDAndURLConcurrent, ImgData =>
                     {

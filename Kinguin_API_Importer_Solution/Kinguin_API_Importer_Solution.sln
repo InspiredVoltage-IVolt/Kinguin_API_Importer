@@ -11,6 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kinguin_API_Management_Cons
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Kinguin_API_Shared\Kinguin_API_Shared.projitems*{7f7d3fe3-67a8-4831-a1fe-b09ea7388b9f}*SharedItemsImports = 5
 		Kinguin_API_Shared\Kinguin_API_Shared.projitems*{f971febd-3f1b-412f-a555-c82058a00771}*SharedItemsImports = 13
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

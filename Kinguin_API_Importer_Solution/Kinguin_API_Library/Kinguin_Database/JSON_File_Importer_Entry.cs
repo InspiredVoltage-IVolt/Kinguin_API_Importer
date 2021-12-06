@@ -59,6 +59,9 @@ namespace IVolt.Kinguin.API.Local
 
             // Download and Save All Images To Database
             DownloadAllImages();
+
+            Console.WriteLine("FULL IMPORT PROCESS DONE!");
+            Console.WriteLine("-----------------");
         }
 
         /// <summary>
@@ -117,13 +120,18 @@ namespace IVolt.Kinguin.API.Local
                 /// Save Prodycts To Database (KinguinProductRefs)
                 SaveProductsToDatabase();
 
+                /// Save Images To Datebase
+                LoadImages();
+
                 /// Save Import Log
+                SaveImportLog();
+
 
                 KinguinProductRefs.Clear();
                 _AllOffers.Clear();
                 _AllMetaData.Clear();
 
-                Console.WriteLine("STARTING IMPORT OF RAW META DATA");
+                Console.WriteLine("STARTING PROCESSING OF RAW META DATA");
                 Console.WriteLine("-----------------");
 
                 IVolt.Kinguin.API.LocalDB.PROC.PRODUCT.ADD.UPDATE.META.DATA.Execute.Proc();

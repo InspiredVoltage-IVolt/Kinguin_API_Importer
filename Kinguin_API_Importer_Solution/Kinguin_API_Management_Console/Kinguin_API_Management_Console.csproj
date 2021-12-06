@@ -16,4 +16,6 @@
     <ProjectReference Include="..\Kinguin_API_Library\Kinguin_API_Library.csproj" />
   </ItemGroup>
 
+  <Import Project="..\Kinguin_API_Shared\Kinguin_API_Shared.projitems" Label="Shared" />
+
 </Project>
