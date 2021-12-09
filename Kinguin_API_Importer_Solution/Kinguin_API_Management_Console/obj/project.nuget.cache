@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "ssHJOs5t7jPrwdvcPw5L26AAZx7gJzITtZ0xuvONsrGe7nktccjWnzFOYZ51bHZLbMyzu+Nwad4IHqFYSOjiDg==",
+  "dgSpecHash": "yHhBg7Pu4iN4XWeqpnnDpANavrINLCIZFqN+z5vKa0Il6xPjEO/JcjDEwTKknAbJ0nvC8xQskdi4gY6t3aIe6A==",
   "success": true,
   "projectFilePath": "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Management_Console\\Kinguin_API_Management_Console.csproj",
   "expectedPackageFiles": [
@@ -32,6 +32,7 @@
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\system.collections.concurrent\\4.3.0\\system.collections.concurrent.4.3.0.nupkg.sha512",
+    "C:\\Users\\MarkAlicz\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512",
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\system.diagnostics.tracing\\4.3.0\\system.diagnostics.tracing.4.3.0.nupkg.sha512",

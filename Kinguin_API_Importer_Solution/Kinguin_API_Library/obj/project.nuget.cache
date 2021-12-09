@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "qN0jYvAWxUnFvdz1b/McUAlk+cF1haDdNJ6+N8odezX4yYqFymfXpwN8YORggmVHEEEaFyibSJulOCpXVpso7g==",
+  "dgSpecHash": "4IY2Zjnc2H5KOln8ay3YhBf6gZEdhqfdHnvSn17iZSYyxJ4S/d7+DY5yisOmnwQPXXDO/LFRxhDXROgsMl+ZKQ==",
   "success": true,
   "projectFilePath": "D:\\IVolt_Development\\Kinguin_API_Importer\\Kinguin_API_Importer\\Kinguin_API_Importer_Solution\\Kinguin_API_Library\\Kinguin_API_Library.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,7 @@
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\MarkAlicz\\.nuget\\packages\\system.data.datasetextensions\\4.5.0\\system.data.datasetextensions.4.5.0.nupkg.sha512",
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
     "C:\\Users\\MarkAlicz\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",

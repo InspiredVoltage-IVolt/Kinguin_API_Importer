@@ -58,11 +58,58 @@ namespace IVolt.Kinguin.API.Local
             ImportCollectedMetaData(_Files);
 
             // Download and Save All Images To Database
-            DownloadAllImages();
+            //DownloadAllImages();
 
             Console.WriteLine("FULL IMPORT PROCESS DONE!");
             Console.WriteLine("-----------------");
         }
+
+        /// <summary>
+        /// Process the Image Data Only
+        /// </summary>
+        public static bool ProcessImageDataOnly()
+        {
+            ACT.Core.SystemSettings.LoadedSettings.Clear();
+            ACT.Core.SystemSettings.LoadSystemSettings();
+            var _Files = System.IO.Directory.GetFiles(FileSecurity.KinguinLocalDownloadFolder_Protected, "*.json", SearchOption.AllDirectories).ToList();
+
+
+            _ImportedFiles.Clear();
+            _AllMetaData.Clear();
+            _AllOffers.Clear();
+            KinguinProductRefs.Clear();
+            ErrorLog.Clear();
+
+            var _Count = LoadImageDataOnly(_Files);
+
+            if (_Count == 0) { Console.WriteLine("Someing Went Wrong! Exiting."); return false; }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Download All Images In Database
+        /// </summary>
+        public static bool ProcessDownloadImages()
+        {
+            ACT.Core.SystemSettings.LoadedSettings.Clear();
+            ACT.Core.SystemSettings.LoadSystemSettings();
+            var _Files = System.IO.Directory.GetFiles(FileSecurity.KinguinLocalDownloadFolder_Protected, "*.json", SearchOption.AllDirectories).ToList();
+
+
+            _ImportedFiles.Clear();
+            _AllMetaData.Clear();
+            _AllOffers.Clear();
+            KinguinProductRefs.Clear();
+            ErrorLog.Clear();
+
+            var _Count = SaveImagesToDatabase();
+
+            if (_Count == 0) { Console.WriteLine("Someing Went Wrong! Exiting."); return false; }
+
+            return true;
+        }
+
 
         /// <summary>
         /// Loads and Saves Data To Database
@@ -162,8 +209,8 @@ namespace IVolt.Kinguin.API.Local
             using (var reader = FastMember.ObjectReader.Create(KinguinProductRefs))
             {
                 bcp.ColumnMappings.Add("ImportID", "ImportID");
-                bcp.ColumnMappings.Add("JSONFileName", "JSONFileName");
-                bcp.ColumnMappings.Add("DateModified", "UpdatedAt");
+                bcp.ColumnMappings.Add("JSONFileName", "JSON_FileName");
+                bcp.ColumnMappings.Add("UpdatedAt", "DateModified");
                 bcp.DestinationTableName = "Import_Log";
                 bcp.WriteToServer(reader);
             }
@@ -219,7 +266,6 @@ namespace IVolt.Kinguin.API.Local
             return _ImportID;
             #endregion
         }
-
 
         /// <summary>
         /// Gets the Kinguin Intermediate Database Product ID Based On the KinguinProductID

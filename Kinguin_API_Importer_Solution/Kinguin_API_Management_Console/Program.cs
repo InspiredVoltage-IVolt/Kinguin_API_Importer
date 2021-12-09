@@ -92,47 +92,70 @@ namespace IVolt.Kinguin.ManagementConsole
             Console.Clear();
             Console.WriteLine("Kinguin API - Console Admin Menu");
             Console.WriteLine("--------------------------------");
-            Console.WriteLine("1. Download All Products");
-            Console.WriteLine("2. Import Products Into Kinguin DB");
-            Console.WriteLine("3. Push Products To NOP Commerce");
-            Console.WriteLine("4. Cleanup Product Files");
-            Console.WriteLine("5. Revert Product Cleanup");
+            Console.WriteLine("1.   Download All Products");
+            Console.WriteLine("2.   Import Products Into Kinguin DB");
+            Console.WriteLine("3.   ReLoaded Products Image Data");
+            Console.WriteLine("3-1. Download All Product Images To Folder");
+            Console.WriteLine("3-2. Update Database With Downloaded files");
+            Console.WriteLine("4.   Cleanup Product Files");
+            Console.WriteLine("5.   Revert Product Cleanup");
             Console.WriteLine("--------------------------------");
             Console.WriteLine("6. ");
             Console.WriteLine("7. Exit");
 
             string _Action = Console.ReadLine();
 
-            _Action = _Action.Trim().Replace(".", "");
-
-            int _ActionNumber = 0;
-            try { _ActionNumber = Convert.ToInt32(_Action); }
-            catch
+            switch (_Action)
             {
-                ShowConsoleError("Invalid Selection: Please Enter a Number 1-6 followed by the enter key");
-                goto mainMenu;
-            }
-
-            switch (_ActionNumber)
-            {
-                case 1:
+                case "1":
                     DownloadAll();
                     goto mainMenu;
-                case 2:
+                case "2":
                     Console.WriteLine("===========================");
                     Console.WriteLine("Starting The Main Process");
                     Console.WriteLine("===========================");
-                    IVolt.Kinguin.API.Local.JSON_File_Importer.Process();
+                    API.Local.JSON_File_Importer.Process();
                     Console.WriteLine("===========================");
                     Console.WriteLine("Completed The Main Process");
                     Console.WriteLine("===========================");
                     Console.ReadKey();
+                    goto mainMenu;
+                case "3":
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("Starting The Reload Process Of Images");
+                    Console.WriteLine("=====================================");
+                    var _R = API.Local.JSON_File_Importer.ProcessImageDataOnly();
+                    if (_R == false) { return; }
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("Completed The Main Process Of Images");
+                    Console.WriteLine("=====================================");
+                    Console.ReadKey();
+                    goto mainMenu;
+                case "3.1":
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("Starting The Downloading of the Images");
+                    Console.WriteLine("=====================================");
+                    var _R = API.Local.JSON_File_Importer.Download;
+                    if (_R == false) { return; }
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("Completed The Main Process Of Images");
+                    Console.WriteLine("=====================================");
+                    Console.ReadKey();
+                    goto mainMenu;
+                case "3.2":
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("Starting The Reload Process Of Images");
+                    Console.WriteLine("=====================================");
+                    var _R = API.Local.JSON_File_Importer.ProcessImageDataOnly();
+                    if (_R == false) { return; }
+                    Console.WriteLine("=====================================");
+                    Console.WriteLine("Completed The Main Process Of Images");
+                    Console.WriteLine("=====================================");
+                    Console.ReadKey();
+                    goto mainMenu;
+                case "4":
                     break;
-                case 3:
-                    break;
-                case 4:
-                    break;
-                case 5:
+                case "5":
                 five:
                     Console.WriteLine("Source Path");
                     var _Source = Console.ReadLine();
@@ -144,9 +167,9 @@ namespace IVolt.Kinguin.ManagementConsole
 
                     IVolt.Kinguin.API.Local.JSON_File_Importer.ReverseCleanupProcessedFile(_Source, _Dest);
                     break;
-                case 6:
+                case "6":
                     break;
-                case 7:
+                case "7":
                     return;
                 default:
                     break;

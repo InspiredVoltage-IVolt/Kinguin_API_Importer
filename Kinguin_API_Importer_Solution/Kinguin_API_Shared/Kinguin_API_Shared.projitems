@@ -15,7 +15,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Data\API_Configuration_json_TEMPLATE.txt" />
-    <Content Include="$(MSBuildThisFileDirectory)SystemConfiguration.xml" />
+    <Content Include="$(MSBuildThisFileDirectory)SystemConfiguration.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Resources\" />

@@ -1,12 +1,12 @@
 using ACT.Core;
 using ACT.Core.Interfaces.DataAccess;
 /// <summary>
-/// Execute PROC_IMAGES_GET_IAMGES_TO_DOWNLOAD
+/// Execute PRODUCT_GET_ALL_METADATA
 /// </summary>
 /// <returns>I_QueryResult</returns>
 
 
-namespace IVolt.Kinguin.API.LocalDB.PROC.IMAGES.GET.IMAGES.TO.DOWNLOAD
+namespace IVolt.Kinguin.API.LocalDB.PRODUCT.IMAGES.PROCESS.RELATIONSHIP
 {
     public static class Execute
     {
@@ -25,7 +25,7 @@ namespace IVolt.Kinguin.API.LocalDB.PROC.IMAGES.GET.IMAGES.TO.DOWNLOAD
                 List<System.Data.IDataParameter> _Params = new List<System.Data.IDataParameter>();
                 #region Param Values
                 #endregion
-                var _Result = DataAccess.RunCommand("[dbo].PROC_IMAGES_GET_IMAGES_TO_DOWNLOAD", _Params, true, System.Data.CommandType.StoredProcedure);
+                var _Result = DataAccess.RunCommand("[dbo].PROC_PRODUCT_IMAGES_PROCESS_RELATIONSHIP", _Params, true, System.Data.CommandType.StoredProcedure);
                 return _Result;
             }
         }

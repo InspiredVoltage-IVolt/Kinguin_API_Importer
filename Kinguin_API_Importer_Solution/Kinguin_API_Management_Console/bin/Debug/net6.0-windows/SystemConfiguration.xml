@@ -11,8 +11,7 @@
 	<Setting name="kinguinapikey"><![CDATA[dc9393a20a632734f15b73397d550692]]></Setting>
 	<Setting name="Kinguin_connectionstring"><![CDATA[Data Source=ns-sql-01;Initial Catalog=Kinguin_DB;User ID=root;Password=K@iserB3lla!MS]]></Setting>
 	<Setting name="NopComm_connectionstring"><![CDATA[Data Source=ns-sql-01;Initial Catalog=Marks_Store;User ID=root;Password=K@iserB3lla!MS]]></Setting>
-	<Setting name="Kinguin_ImageDownloadPath"><![CDATA[D:\__Kinguin_Downloads\Images\]]></Setting>
-	
+
 	<Setting name="ACTInstallationDirectory"><![CDATA[D:\Program Files (x86)\ACT\]]></Setting>
 	<!-- Defines If More Detailed Logging Occurs -->
 	<Setting name="VerboseDebugging"><![CDATA[True]]></Setting>

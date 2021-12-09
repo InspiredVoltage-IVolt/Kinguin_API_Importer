@@ -17,7 +17,7 @@ namespace IVolt.Kinguin.API.Security
         public static string KinguinApi_Protected = ACT.Core.SystemSettings.GetSettingByName("kinguinapikey").Value;
         public static string KinguinNewFileFolderFormat_Protected = ACT.Core.SystemSettings.GetSettingByName("kinguinnewdownloadfolderformat").Value;
         public static string KinguinProcessedFileFolderFormat_Protected = ACT.Core.SystemSettings.GetSettingByName("kinguinprocessedfilesfolderformat").Value;
-
+        public static string Kinguin_ImageDownloadPath = ACT.Core.SystemSettings.GetSettingByName("Kinguin_ImageDownloadPath").Value;
         FileSecurity()
         {
 

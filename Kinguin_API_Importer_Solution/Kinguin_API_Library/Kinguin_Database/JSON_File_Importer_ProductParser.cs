@@ -1,6 +1,9 @@
 ﻿using ACT.Core.Extensions;
 using IVolt.Kinguin.API.DB;
 using IVolt.Kinguin.API.Objects;
+using IVolt.Kinguin.API.Security;
+using System.Collections.Concurrent;
+using System.Data.SqlClient;
 
 namespace IVolt.Kinguin.API.Local
 {
@@ -232,6 +235,106 @@ namespace IVolt.Kinguin.API.Local
                 }
             });
 
+        }
+
+        /// <summary>
+        /// Loads Data using Parallel Threading 
+        /* Saves to Database Table Images With the Following Mappings
+         *Struct - "i1", "Image_Type_ID", *Struct - "V1", "url", *Struct - "V2", "thumbnail_url", *Struct - "KProductID", "Kinguin_ProductID"
+         *Table = "Images";
+        */
+        /// </summary>
+        /// <param name="ImportFiles">List of JSON Files to Import</param>
+        internal static int LoadImageDataOnly(List<string> ImportFiles)
+        {
+            ConcurrentBag<DatabaseMetaData_Struct> _ImgDataStruct = new ConcurrentBag<DatabaseMetaData_Struct>();
+            Console.WriteLine("Started Processing JSON Files");
+
+            Parallel.ForEach(ImportFiles, FileName =>
+            {
+                var _LoadedKinguinProduct = Kinguin_Product.FromJson(FileName.ReadAllText());
+
+                if (_LoadedKinguinProduct.Images != null)
+                {
+                    try
+                    {
+                        // Add All Screenshots
+                        foreach (var ImgScreenShot in _LoadedKinguinProduct.Images.Screenshots.Where(x => x.Url != null))
+                        {
+                            if (ImgScreenShot.Url == null) { continue; }
+                            if (ImgScreenShot.Thumbnail == null) { continue; }
+                            if (_LoadedKinguinProduct.ProductId == null) { continue; }
+                            if (_LoadedKinguinProduct.JSONFileName == null) { continue; }
+
+                            _ImgDataStruct.Add(new DatabaseMetaData_Struct()
+                            {
+                                TableName = "ScreenShot_Images",
+                                KProductID = _LoadedKinguinProduct.ProductId,
+                                V1 = ImgScreenShot.Url,
+                                V2 = ImgScreenShot.Thumbnail,
+                                i1 = 1,
+                                FilePath = _LoadedKinguinProduct.JSONFileName
+                            });
+                        }
+
+                        if (_LoadedKinguinProduct.Images.Cover != null)
+                        {
+                            if (_LoadedKinguinProduct.Images.Cover.Url == null) { return; }
+                            if (_LoadedKinguinProduct.Images.Cover.Thumbnail == null) { return; }
+                            if (_LoadedKinguinProduct.ProductId == null) { return; }
+                            if (_LoadedKinguinProduct.JSONFileName == null) { return; }
+
+                            _ImgDataStruct.Add(new DatabaseMetaData_Struct()
+                            {
+                                TableName = "ScreenShot_CoverImages",
+                                KProductID = _LoadedKinguinProduct.ProductId,
+                                V1 = _LoadedKinguinProduct.Images.Cover.Url,
+                                V2 = _LoadedKinguinProduct.Images.Cover.Thumbnail,
+                                i1 = 2,
+                                FilePath = _LoadedKinguinProduct.JSONFileName
+                            });
+                        }
+                    }
+                    catch
+                    {
+                        // TODO LOG ERROR7
+                    }
+                }
+
+            });
+
+            Console.WriteLine("Completed Loading Image Data");
+
+            #region Add / INSERT ALL INTO DATABASE
+            /*
+             Bulk Copy So Fast
+            */
+            using (var bcp1 = new SqlBulkCopy(FileSecurity.KinguinDatabase_ConnectionString_Protected))
+            using (var reader1 = FastMember.ObjectReader.Create(_ImgDataStruct.ToList()))
+            {
+                bcp1.ColumnMappings.Add("i1", "Image_Type_ID");
+                bcp1.ColumnMappings.Add("V1", "url");
+                bcp1.ColumnMappings.Add("V2", "thumbnail_url");
+                bcp1.ColumnMappings.Add("KProductID", "Kinguin_ProductID");
+                bcp1.DestinationTableName = "Images";
+                bcp1.WriteToServer(reader1);
+            }
+
+            Console.WriteLine("Completed Saving Data To Database");
+
+            #endregion
+
+            var _Results = LocalDB.PRODUCT.IMAGES.PROCESS.RELATIONSHIP.Execute.Proc();
+
+            if (_Results.FirstQueryHasExceptions == true)
+            {
+                Console.WriteLine("Error Processing Images");
+            }
+            else
+            {
+                Console.WriteLine("Total Records Modified: " + _Results.FirstDataTable_WithRows().Rows[0][0].ToString());
+            }
+            return _Results.FirstDataTable_WithRows().Rows[0][0].ToInt();
         }
     }
 }
